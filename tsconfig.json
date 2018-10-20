@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react",
+      "module": "commonjs",
+      "noImplicitAny": true,
+      "outDir": "./build/",
+      "preserveConstEnums": true,
+      "removeComments": true,
+      "sourceMap": true,
+      "target": "es5",
+      "lib": [
+        "dom",
+        "es2015",
+        "es2017"
+      ],
+      "typeRoots": [
+        "./node_modules/@types"
+    ],
+      "allowJs": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "skipLibCheck": true,
+      "strictPropertyInitialization": false,
+      "inlineSources": true,
+      "experimentalDecorators": true
+    },
+    "include": [
+      "./src/**/**/*"
+    ]
+  }
