@@ -41,7 +41,7 @@ export function accessTokenIsExpired() {
     try {
         const now = Date.now();
         if (hasAccessToken()) {
-            return accessTokenExpiresAt() > now;
+            return accessTokenExpiresAt() < now;
         }
         return true;
     } catch(err) {

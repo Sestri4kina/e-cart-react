@@ -13,7 +13,7 @@ export async function getProducts() {
         const products = await axios.get(
             productsPath,
             { headers }
-        ).then(res => res.data);
+        ).then(res => res.data.data);
 
         return products;
     } catch(err) {
