@@ -1,2 +1,0 @@
-webpackHotUpdate(0,{18:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),u=n(4),c=n(19);u.render(r.createElement(c.App,null),document.getElementById("root")),e.hot.accept()},42:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1);t.ProductList=function(e){var t=e.products.map(function(e){return r.createElement("li",{key:e.id}," ",e.name," ")});return r.createElement("ul",null,t)}}});
-//# sourceMappingURL=0.4951114bf1ae5bbf6c76.hot-update.js.map

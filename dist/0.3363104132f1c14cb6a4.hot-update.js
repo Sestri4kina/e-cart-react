@@ -1,2 +1,0 @@
-webpackHotUpdate(0,{18:function(e,t,c){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=c(1),o=c(4),r=c(19);o.render(n.createElement(r.App,null),document.getElementById("root")),e.hot.accept()}});
-//# sourceMappingURL=0.3363104132f1c14cb6a4.hot-update.js.map
