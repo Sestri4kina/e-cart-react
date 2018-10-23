@@ -1,30 +1,49 @@
-import { AppAction } from '../types';
+import { AppAction, AppCommand } from '../types';
 import { Product } from '../models';
+import {ExternalAPI} from '../../utils/remote-api';
 
-export type FetchProductsStart = AppAction<'FetchProductsStart', null>;
+export const enum productsActionTypes {
+    FetchProductsStart = 'FetchProductsStart',
+    FetchProductsSuccess = 'FetchProductsSuccess',
+    FetchProductsError = 'FetchProductsError'
+ }
+
+export type FetchProductsStart = AppAction<productsActionTypes.FetchProductsStart, null>;
 export function fetchProductsStart(): FetchProductsStart {
-    return {type: 'FetchProductsStart'};
+    return {type: productsActionTypes.FetchProductsStart};
 }
 
 export type FetchProductsSuccess = AppAction<
-    'FetchProductsSuccess',
+    productsActionTypes.FetchProductsSuccess,
     Product[]
     >;
 export function fetchProductsSuccess(products: Product[]): FetchProductsSuccess {
     return {
-        type: 'FetchProductsSuccess',
+        type: productsActionTypes.FetchProductsSuccess,
         payload: products
     }
 }
 
 export type FetchProductsError = AppAction<
-    'FetchProductsError',
+    productsActionTypes.FetchProductsError,
     Error
     >;
 export function fetchProductsError(error: Error): FetchProductsError {
     return {
-        type: 'FetchProductsError',
+        type: productsActionTypes.FetchProductsError,
         error
     }
 }
+
+export const fetchProducts = (): AppCommand => 
+    async (dispatch, getState, {api}) => {
+        dispatch(fetchProductsStart());
+        try {
+            const products = await api.productsAPI.getProducts();
+            console.log(products);
+            return dispatch(fetchProductsSuccess(products));
+        } catch (error) {
+            return dispatch(fetchProductsError(error));
+        }
+    };
 

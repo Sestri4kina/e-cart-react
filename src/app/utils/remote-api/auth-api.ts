@@ -23,3 +23,7 @@ export async function getAccessToken(): Promise<AccessToken> {
         throw new Error(err);
     }
 }
+
+export interface AuthAPI {
+    getAccessToken(): Promise<AccessToken>
+}

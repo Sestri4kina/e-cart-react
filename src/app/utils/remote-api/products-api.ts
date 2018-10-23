@@ -1,8 +1,9 @@
 import { moltinBaseAPI, moltinAPI } from '../config';
 import axios from 'axios';
 import { accessToken } from '../services/handle-token';
+import { Product } from '../../store/models';
 
-export async function getProducts() {
+export async function getProducts(): Promise<Product[]> {
     try {
         const productsPath = moltinBaseAPI + moltinAPI.productAPI;
         const token = accessToken();
@@ -18,5 +19,10 @@ export async function getProducts() {
         return products;
     } catch(err) {
         console.log(err);
+        throw new Error(err);
     }
+}
+
+export interface ProductsAPI {
+    getProducts(): Promise<Product[]>
 }
