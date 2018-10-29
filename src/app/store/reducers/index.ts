@@ -4,5 +4,5 @@ import {AppState} from '../types';
 import {productsReducer} from './products';
 
 export default combineReducers<AppState>({
-    productsReducer
-} as any);
+    productsState: productsReducer
+});

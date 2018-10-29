@@ -1,15 +1,19 @@
-import React from "react";
-// import { getAccessToken } from '../../utils/remote-api/auth-api';
-// import { persistAccessToken, accessTokenIsExpired } from '../../utils/services/handle-token';
-// import { getProducts } from '../../utils/remote-api/products-api';
-// import { ProductList } from "../../components/product-list";
+import * as React from "react";
+import { Product } from "../../store";
 
-export interface HomeProps {}
-
-export interface HomeState {}
+export interface HomeState {
+    products: Product[]
+}
 
 // move products logic here
-export class Home extends React.Component<HomeProps, HomeState> {
+export class Home extends React.Component<{}, {}> {
+    render() {
+        return (
+        <div>
+            Home component
+        </div>
+        )
+    }
     // constructor(props: any) {
     //     super(props);
     //     this.state = {

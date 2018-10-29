@@ -7,13 +7,13 @@ import {Action} from './actions';
 import {throwErrorMiddleware} from './middlewares';
 import reducer from './reducers';
 import {AppState, INITIAL_PRODUCTS_STATE} from './types';
-import {ExternalAPI} from '../utils/remote-api';
+import {api, ExternalAPI} from '../utils/remote-api';
 
 export const defaultState: AppState = {
     productsState: INITIAL_PRODUCTS_STATE
 };
 
-export function createAppStore(history: History, initialState: Partial<AppState>) {
+export function createAppStore(initialState: Partial<AppState>) {
     const logger = createLogger({
         duration: true,
         timestamp: false,
@@ -21,10 +21,10 @@ export function createAppStore(history: History, initialState: Partial<AppState>
         collapsed: true
     });
 
-    const thunkMiddleware = thunk.withExtraArgument({history}) as ThunkMiddleware<
+    const thunkMiddleware = thunk.withExtraArgument({api}) as ThunkMiddleware<
         AppState,
         Action,
-        {api: ExternalAPI, history: History}
+        {api: ExternalAPI}
     >;
 
     return createReduxStore(

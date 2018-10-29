@@ -8,4 +8,5 @@ export type Action =
     FetchProductsStart 
     | FetchProductsSuccess
     | FetchProductsError;
-    
+  
+export * from './products';

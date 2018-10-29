@@ -1,9 +1,9 @@
-import { Product } from './models';
-import { History } from 'history';
-import { ThunkAction } from 'redux-thunk';
+import {Product} from './models';
+import {History} from 'history';
+import {ThunkAction} from 'redux-thunk';
 // import {ParametricSelector, Selector} from 'reselect';
-import { ExternalAPI } from '../utils/remote-api';
-import { Action } from './actions';
+import {ExternalAPI} from '../utils/remote-api';
+import {Action} from './actions';
 
 export interface ProductsState {
     products: Product[];
@@ -28,6 +28,6 @@ export type AppAction<T extends string, P = null> = {type: T} & (
 export type AppCommand<T = any> = ThunkAction<
     Promise<T>,
     AppState,
-    { api: ExternalAPI, history: History },
+    { api: ExternalAPI },
     Action
 >;

@@ -1,6 +1,6 @@
 import { AppAction, AppCommand } from '../types';
 import { Product } from '../models';
-import {ExternalAPI} from '../../utils/remote-api';
+import {getProducts} from '../../utils/remote-api';
 
 export const enum productsActionTypes {
     FetchProductsStart = 'FetchProductsStart',
@@ -39,8 +39,7 @@ export const fetchProducts = (): AppCommand =>
     async (dispatch, getState, {api}) => {
         dispatch(fetchProductsStart());
         try {
-            const products = await api.productsAPI.getProducts();
-            console.log(products);
+            const products = await getProducts();
             return dispatch(fetchProductsSuccess(products));
         } catch (error) {
             return dispatch(fetchProductsError(error));
