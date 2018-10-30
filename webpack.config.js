@@ -31,6 +31,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    devServer: {
+        contentBase: './dist',
+        hot: true
+    }
 }
     

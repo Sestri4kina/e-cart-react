@@ -16,6 +16,5 @@ declare let module: any;
 const rootNode = document.getElementById("root");
 render(<AppStarter />, rootNode);
 
-if (module.hot) {
-    module.hot.accept();
- }
+module.hot.accept();
+ 
