@@ -10,6 +10,7 @@ import {Route, Router, Switch} from 'react-router-dom';
 import {ProductList} from './containers';
 import { AppStore, fetchProducts } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
+import {Header} from "./components";
 export interface AppComponentProps {
     store: AppStore;
     history: History;
@@ -56,9 +57,12 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         return hasAccessToken && (
             <ReduxProvider store={store}>
                 <Router history={history}>
-                    <Switch>
-                        <Route path="/" exact render={this.renderHome} />
-                    </Switch>
+                    <div>
+                        <Header/>
+                        <Switch>
+                            <Route path="/" exact render={this.renderHome} />
+                        </Switch>
+                    </div>
                 </Router>
             </ReduxProvider>
         );
