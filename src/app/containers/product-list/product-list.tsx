@@ -2,11 +2,11 @@ import * as React from 'react';
 import {Product} from "../../store/models";
 import {connect} from 'react-redux';
 import {AppState, fetchProducts, AppStore} from '../../store';
-import { ProductItem } from '../../components';
+import {ProductItem} from '../../components';
 
 class ProductListView extends React.Component<ProductListProps, {}> {
     componentDidMount() {
-        this.props.onFetchProducts();
+        //this.props.onFetchProducts();
     }
 
     render() {

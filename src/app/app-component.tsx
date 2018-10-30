@@ -6,12 +6,13 @@ import {
     accessTokenIsExpired } 
     from './utils/services/handle-token';
 import {getAccessToken} from './utils/remote-api/auth-api';
-//import {Route, Router, Switch} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
 import {ProductList} from './containers';
-import { AppStore } from "./store";
+import { AppStore, fetchProducts } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
 export interface AppComponentProps {
     store: AppStore;
+    history: History;
 }
 export interface AppComponentState {
     hasAccessToken: boolean;
@@ -42,13 +43,23 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         this.getAccessToken();
     }
 
+    private renderHome = () => {
+        const {store} = this.props;
+        store.dispatch(fetchProducts());
+        return <ProductList />;
+    }
+
     render() {
         const {hasAccessToken} = this.state;
-        const {store} = this.props;
+        const {store, history} = this.props;
 
         return hasAccessToken && (
             <ReduxProvider store={store}>
-                <ProductList />
+                <Router history={history}>
+                    <Switch>
+                        <Route path="/" exact render={this.renderHome} />
+                    </Switch>
+                </Router>
             </ReduxProvider>
         );
     }
