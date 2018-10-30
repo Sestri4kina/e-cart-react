@@ -2,6 +2,7 @@ import { moltinBaseAPI, moltinAPI } from '../config';
 import axios from 'axios';
 import { accessToken } from '../services/handle-token';
 import { Product } from '../../store/models';
+import {composeProductArray} from '../services/product-utils';
 
 export async function getProducts(): Promise<Product[]> {
     try {
@@ -14,7 +15,11 @@ export async function getProducts(): Promise<Product[]> {
         const products = await axios.get(
             productsPath,
             { headers }
-        ).then(res => res.data.data);
+        ).then(res => {
+            const productsWithoutImage = res.data.data;
+            const images = res.data.included.main_images;
+            return composeProductArray(productsWithoutImage, images);
+        });
 
         return products;
     } catch(err) {

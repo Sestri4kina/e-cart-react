@@ -7,22 +7,11 @@ export interface Products {
     meta: ProductsMeta;
 }
 
-export interface Product {
-    commodity_type: "physical" | "digital";
-    description: string;
-    id: string;
-    manage_stock: boolean;
-    meta: ProductMeta;
-    name: string;
-    price: Array<Price>;
-    relationships: ProductRelationships;
-    sku: string;
-    slug: string;
-    status: string;
-    type: string;
+export interface Product extends ProductWithoutImage {
+    imageHref: string;
 }
 
-export interface ProductWithImage {
+export interface ProductWithoutImage {
     commodity_type: "physical" | "digital";
     description: string;
     id: string;
@@ -35,7 +24,6 @@ export interface ProductWithImage {
     slug: string;
     status: string;
     type: string;
-    imageHref: string;
 }
 
 interface ProductMeta {

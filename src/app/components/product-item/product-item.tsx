@@ -7,6 +7,9 @@ interface ProductItemProps {
 
 export const ProductItem = ({product}: ProductItemProps) => {
     return (
-        <li>{JSON.stringify(product)}</li>
+        <li>
+            <img src={product.imageHref} />
+            <h3>{product.name}</h3>
+        </li>
     )
 }

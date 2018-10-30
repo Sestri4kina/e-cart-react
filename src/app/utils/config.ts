@@ -4,7 +4,7 @@ export const moltinBaseAPI: string = "https://api.moltin.com/";
 
 export const moltinAPI = {
     accessTokenAPI: "oauth/access_token",
-    productAPI: "v2/products",
+    productAPI: "v2/products?include=main_image",
     cartAPI: (cartRef: string) => `v2/carts/${cartRef}`,
     cartItemsAPI: (cartRef: string) => `v2/carts/${cartRef}/items`,
     cartItemAPI: (cartRef: string, itemId: string) => `v2/carts/${cartRef}/items/${itemId}`,
