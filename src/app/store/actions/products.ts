@@ -2,12 +2,17 @@ import { AppAction, AppCommand } from '../types';
 import { Product } from '../models';
 import {getProducts} from '../../utils/remote-api';
 
+
 export const enum productsActionTypes {
     FetchProductsStart = 'FetchProductsStart',
     FetchProductsSuccess = 'FetchProductsSuccess',
-    FetchProductsError = 'FetchProductsError'
- }
+    FetchProductsError = 'FetchProductsError',
+    AddProductToCartStart = 'AddProductToCartStart',
+    AddProductToCartSuccess = 'AddProductToCartSuccess',
+    AddProductToCartError = 'AddProductToCartError'
+}
 
+// FETCH PRODUCTS
 export type FetchProductsStart = AppAction<productsActionTypes.FetchProductsStart, null>;
 export function fetchProductsStart(): FetchProductsStart {
     return {type: productsActionTypes.FetchProductsStart};
@@ -46,3 +51,41 @@ export const fetchProducts = (): AppCommand =>
         }
     };
 
+// ADD PRODUCT TO CART ACTION
+export type AddProductToCartStart = AppAction<productsActionTypes.AddProductToCartStart, null>;
+export function addProductToCartStart(): AddProductToCartStart {
+    return {type: productsActionTypes.AddProductToCartStart};
+}
+
+export type AddProductToCartSuccess = AppAction<
+    productsActionTypes.AddProductToCartSuccess,
+    Product
+>;
+export function addProductToCartSuccess(product: Product): AddProductToCartSuccess {
+    return {
+        type: productsActionTypes.AddProductToCartSuccess,
+        payload: product
+    }
+}
+
+export type AddProductToCartError = AppAction<
+    productsActionTypes.AddProductToCartError,
+    Error
+>;
+export function addProductToCartError(error: Error): AddProductToCartError {
+    return {
+        type: productsActionTypes.AddProductToCartError,
+        error
+    }
+}
+/*
+export const addProductToCart = (product: Product): AppCommand =>
+    async (dispatch, getState, {api}) => {
+        dispatch(addProductToCartStart(product));
+        try {
+
+        } catch (error) {
+            return dispatch(addProductToCartError(error));
+        }
+    }
+*/
