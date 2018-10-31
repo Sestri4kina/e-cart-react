@@ -1,0 +1,24 @@
+.product-container {
+    padding: 12px 24px;
+    background-color: #F5F5F5; 
+}
+
+.img-container {
+    display: flex;
+    align-items: center;
+    min-height: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+    .img-container {
+        min-height: 120px;
+    }  
+}
+
+@media only screen and (max-width: 1024px) {
+    .img-container {
+        min-height: 200px;
+    }  
+}
+
+

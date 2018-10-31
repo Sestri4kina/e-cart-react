@@ -5,12 +5,14 @@ export interface Timestamps {
 
 export interface DisplayPrice {
     with_tax: {
-        unit:FormattedPrice;
-        value: FormattedPrice;
+        amount: number;
+        currency: string;
+        formatted: string;
     };
     without_tax: {
-        unit: FormattedPrice;
-        value: FormattedPrice;
+        amount: number;
+        currency: string;
+        formatted: string;
     }
 }
 

@@ -3,6 +3,7 @@ import {Product} from "../../store/models";
 import {connect} from 'react-redux';
 import {AppState, fetchProducts, AppStore} from '../../store';
 import {ProductItem} from '../../components';
+import '../../../styles/grid.css';
 
 class ProductListView extends React.Component<ProductListProps, {}> {
     componentDidMount() {
@@ -16,9 +17,9 @@ class ProductListView extends React.Component<ProductListProps, {}> {
         });
         
         return !!products.length && (
-            <ul>
+            <div className="grid-container">
                 {productList}
-            </ul>
+            </div>
         )
     }
 }

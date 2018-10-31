@@ -4,7 +4,7 @@ header ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: lightgrey;
+    background-color: orange;
 }
 
 header li {
@@ -22,5 +22,5 @@ header li a {
 }
 
 header li a:hover {
-    background-color: orange;
+    background-color: rgba(255, 166, 0, 0.884);
 }

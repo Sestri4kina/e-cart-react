@@ -2,6 +2,7 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import {createHashHistory} from 'history';
 import {App} from './app-component';
+import '../styles/index.css';
 
 declare let module: any;
 
