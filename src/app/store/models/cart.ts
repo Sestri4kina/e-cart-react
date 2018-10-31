@@ -18,7 +18,7 @@ export interface Cart {
 }
 
 export interface CartItems {
-    data: Array<CartItem>;
+    data: CartItem[];
     meta: Meta;
 }
 
@@ -49,3 +49,8 @@ export interface Meta {
     timestamps: Timestamps;
 }
 
+export interface CartReference {
+    value: string;
+    created_at: number;
+    modified_at: number;
+}

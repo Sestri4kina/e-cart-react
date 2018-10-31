@@ -6,11 +6,12 @@ import thunk, {ThunkMiddleware} from 'redux-thunk';
 import {Action} from './actions';
 import {throwErrorMiddleware} from './middlewares';
 import reducer from './reducers';
-import {AppState, INITIAL_PRODUCTS_STATE} from './types';
+import {AppState, INITIAL_PRODUCTS_STATE, INITIAL_CART_STATE} from './types';
 import {api, ExternalAPI} from '../utils/remote-api';
 
 export const defaultState: AppState = {
-    productsState: INITIAL_PRODUCTS_STATE
+    productsState: INITIAL_PRODUCTS_STATE,
+    cartState: INITIAL_CART_STATE
 };
 
 export function createAppStore(initialState: Partial<AppState>) {

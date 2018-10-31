@@ -11,7 +11,7 @@ export function composeProductArray(products: ProductWithoutImage[], images: Ima
             return image.id === imageId
         })
 
-        const imageHref = !!image ? image.link.href : '';
+        const imageHref = image!.link.href;
 
         productWithImage = { ...product, imageHref };
 

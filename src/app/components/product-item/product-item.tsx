@@ -8,9 +8,10 @@ import '../../../styles/button.css';
 import '../../../styles/index.css';
 interface ProductItemProps {
     product: Product;
+    onAddToCart: (productId: string) => void
 }
 
-export const ProductItem = ({product}: ProductItemProps) => {
+export const ProductItem = ({product, onAddToCart}: ProductItemProps) => {
     const {name, imageHref} = product;
     const price = product.meta.display_price.with_tax.formatted;
     return (
@@ -21,7 +22,11 @@ export const ProductItem = ({product}: ProductItemProps) => {
                 </div>
                 <h3 className="product-name">{name}</h3>
                 <h2 className="product-price">{price}</h2>
-                <button type="button" className="btn btn-primary marg-v-md">Add to cart</button>
+                <button type="button" 
+                    className="btn btn-primary marg-v-md"
+                    onClick={() => onAddToCart(product.id)}>
+                    Add to cart
+                </button>
             </div>
         </div>
     )

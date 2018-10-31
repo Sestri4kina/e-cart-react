@@ -1,5 +1,5 @@
 import {Action} from '../actions';
-import {AppState, ProductsState, INITIAL_PRODUCTS_STATE} from '../types';
+import {ProductsState, INITIAL_PRODUCTS_STATE} from '../types';
 import { productsActionTypes } from '../actions/products';
 
 export const productsReducer = (

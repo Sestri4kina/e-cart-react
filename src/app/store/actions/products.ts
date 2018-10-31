@@ -6,10 +6,7 @@ import {getProducts} from '../../utils/remote-api';
 export const enum productsActionTypes {
     FetchProductsStart = 'FetchProductsStart',
     FetchProductsSuccess = 'FetchProductsSuccess',
-    FetchProductsError = 'FetchProductsError',
-    AddProductToCartStart = 'AddProductToCartStart',
-    AddProductToCartSuccess = 'AddProductToCartSuccess',
-    AddProductToCartError = 'AddProductToCartError'
+    FetchProductsError = 'FetchProductsError'
 }
 
 // FETCH PRODUCTS
@@ -51,41 +48,3 @@ export const fetchProducts = (): AppCommand =>
         }
     };
 
-// ADD PRODUCT TO CART ACTION
-export type AddProductToCartStart = AppAction<productsActionTypes.AddProductToCartStart, null>;
-export function addProductToCartStart(): AddProductToCartStart {
-    return {type: productsActionTypes.AddProductToCartStart};
-}
-
-export type AddProductToCartSuccess = AppAction<
-    productsActionTypes.AddProductToCartSuccess,
-    Product
->;
-export function addProductToCartSuccess(product: Product): AddProductToCartSuccess {
-    return {
-        type: productsActionTypes.AddProductToCartSuccess,
-        payload: product
-    }
-}
-
-export type AddProductToCartError = AppAction<
-    productsActionTypes.AddProductToCartError,
-    Error
->;
-export function addProductToCartError(error: Error): AddProductToCartError {
-    return {
-        type: productsActionTypes.AddProductToCartError,
-        error
-    }
-}
-/*
-export const addProductToCart = (product: Product): AppCommand =>
-    async (dispatch, getState, {api}) => {
-        dispatch(addProductToCartStart(product));
-        try {
-
-        } catch (error) {
-            return dispatch(addProductToCartError(error));
-        }
-    }
-*/

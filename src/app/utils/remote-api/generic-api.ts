@@ -5,7 +5,7 @@ import { accessToken } from '../services/handle-token';
 export async function getRequest(specificPath: string): Promise<any> {
     try {
         const path = moltinBaseAPI + specificPath;
-        const headers = setAuthHeaders();
+        const headers = setHeaders();
 
         const result = await axios.get(
             path,
@@ -22,7 +22,7 @@ export async function getRequest(specificPath: string): Promise<any> {
 export async function postRequest(specificPath: string, body: any): Promise<any> {
     try {
         const path = moltinBaseAPI + specificPath;
-        const headers = setAuthHeaders();
+        const headers = setHeaders();
 
         const result = await axios.post(
             path,
@@ -37,10 +37,11 @@ export async function postRequest(specificPath: string, body: any): Promise<any>
     }
 }
 
-function setAuthHeaders() {
+function setHeaders() {
     const token = accessToken();
     const headers: any = {};
     headers['Authorization'] = `Bearer ${token}`;
+    headers['Content-Type'] = 'application/json';
 
     return headers;
 }

@@ -4,9 +4,18 @@ import {
     FetchProductsError
 } from './products';
 
+import {
+    AddProductToCartStart,
+    AddProductToCartSuccess,
+    AddProductToCartError
+} from './cart';
+
 export type Action = 
     FetchProductsStart 
     | FetchProductsSuccess
-    | FetchProductsError;
+    | FetchProductsError
+    | AddProductToCartStart
+    | AddProductToCartSuccess
+    | AddProductToCartError;
   
 export * from './products';

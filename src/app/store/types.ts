@@ -1,4 +1,4 @@
-import {Product} from './models';
+import {Product, CartItem} from './models';
 import {History} from 'history';
 import {ThunkAction} from 'redux-thunk';
 // import {ParametricSelector, Selector} from 'reselect';
@@ -10,13 +10,22 @@ export interface ProductsState {
     isLoading: boolean;
 }
 
+export interface CartState {
+    cartItems: CartItem[];
+}
+
 export const INITIAL_PRODUCTS_STATE: ProductsState = {
     products: [],
     isLoading: false
 };
 
+export const INITIAL_CART_STATE: CartState = {
+    cartItems: []
+}
+
 export interface AppState {
     productsState: ProductsState;
+    cartState: CartState;
 }
 
 export type AppAction<T extends string, P = null> = {type: T} & (
