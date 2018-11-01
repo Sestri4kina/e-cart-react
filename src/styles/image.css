@@ -6,3 +6,7 @@
     margin: auto;
 }
 
+.img-sm {
+    max-width: 160px;
+}
+

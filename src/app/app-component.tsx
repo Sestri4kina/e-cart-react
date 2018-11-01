@@ -11,7 +11,7 @@ import {Route, Router, Switch} from 'react-router-dom';
 import {ProductList} from './containers';
 import { AppStore, fetchProducts, getCartItems } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
-import {Header} from "./containers";
+import {Header, Cart} from "./containers";
 export interface AppComponentProps {
     store: AppStore;
     history: History;
@@ -54,6 +54,10 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         return <ProductList />;
     }
 
+    private renderCart = () => {
+        return <Cart/>;
+    }
+
     render() {
         const {hasAccessToken} = this.state;
         const {store, history} = this.props;
@@ -65,6 +69,7 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
                         <Header/>
                         <Switch>
                             <Route path="/" exact render={this.renderHome} />
+                            <Route path="/cart"  render={this.renderCart} />
                         </Switch>
                     </div>
                 </Router>

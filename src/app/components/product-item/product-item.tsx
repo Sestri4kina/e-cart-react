@@ -16,7 +16,7 @@ export const ProductItem = ({product, onAddToCart}: ProductItemProps) => {
     const price = product.meta.display_price.with_tax.formatted;
     return (
         <div className="grid-item">
-            <div className="product-container">
+            <div className="grey-container">
                 <div className="img-container">
                     <img className="img" src={imageHref} />
                 </div>

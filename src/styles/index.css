@@ -29,6 +29,18 @@
     margin-top: 24px;
 }
 
+.marg-left-sm {
+    margin-left: 8px;
+}
+
+.marg-left-md {
+    margin-left: 16px;
+}
+
+.marg-left-lg {
+    margin-left: 24px;
+}
+
 .marg-v-sm {
     margin-bottom: 8px;
     margin-top: 8px;
@@ -42,5 +54,24 @@
 .marg-v-lg {
     margin-bottom: 24px;
     margin-top: 24px;
+}
+
+.marg-h-sm {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.marg-h-md {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.marg-h-lg {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.text-grey {
+    color: grey;
 }
 
