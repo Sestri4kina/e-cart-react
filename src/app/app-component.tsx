@@ -8,10 +8,9 @@ import {
 import {getAccessToken} from './utils/remote-api/auth-api';
 
 import {Route, Router, Switch} from 'react-router-dom';
-import {ProductList} from './containers';
 import { AppStore, fetchProducts, getCartItems } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
-import {Header, Cart} from "./containers";
+import {Header, Cart, Home} from "./containers";
 export interface AppComponentProps {
     store: AppStore;
     history: History;
@@ -51,7 +50,7 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
     private renderHome = () => {
         const {store} = this.props;
         store.dispatch(fetchProducts());
-        return <ProductList />;
+        return <Home />;
     }
 
     private renderCart = () => {

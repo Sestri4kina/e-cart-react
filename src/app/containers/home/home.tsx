@@ -1,54 +1,43 @@
-import * as React from "react";
-import { Product } from "../../store";
+import * as React from 'react';
+import {Product} from "../../store/models";
+import {connect} from 'react-redux';
+import {AppState, AppStore} from '../../store';
+import {ProductItem} from '../../components';
+import '../../../styles/grid.css';
+import { addProductToCart } from '../../store/actions/cart';
 
-export interface HomeState {
-    products: Product[]
-}
-
-// move products logic here
-export class Home extends React.Component<{}, {}> {
+class ProductListView extends React.Component<ProductListProps, {}> {
     render() {
-        return (
-        <div>
-            Home component
-        </div>
+        const {products, onAddToCart} = this.props; 
+        const productList = products.map((product: Product) => {
+            return (<ProductItem key={product.id} product={product} onAddToCart={onAddToCart}/>)
+        });
+        
+        return !!products.length && (
+            <div className="grid-container-columns">
+                {productList}
+            </div>
         )
     }
-    // constructor(props: any) {
-    //     super(props);
-    //     this.state = {
-    //         products: []
-    //     };
-    // }
-
-    // async fetchProducts() {
-    //     if  (accessTokenIsExpired()) {
-    //         const authenticate = await getAccessToken();
-    //         persistAccessToken(authenticate.access_token, authenticate.expires);
-    //     } else {
-    //         console.log("there is already token in the storage");
-    //     }
-
-    //     const products = await getProducts();
-    //     this.setState({
-    //         products
-    //     });
-    // }
-
-    // componentDidMount() {
-    //     this.fetchProducts();
-    // }
-
-    // render() {
-    //     const { products } = this.state;
-
-    //     return !!products.length && (
-    //         <div>
-    //             <h1>
-    //                 products
-    //             </h1>
-    //             <ProductList products={products} />
-    //         </div>
-    //     );
-    // }
 }
+
+interface ProductListProps {
+    products: Product[];
+    onAddToCart: (productIs: string) => void;
+}
+
+// connect<IMapStateToProps, IMapDispatchToProps, ICompProps, IReduxState>
+// connect(mapStateToProps, mapDispatchToProps)
+// pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> pick only specified properties;
+export const Home = connect<
+    Pick<ProductListProps, 'products'>,
+    Pick<ProductListProps, 'onAddToCart'>,
+    {},
+    AppState
+>(
+    ({productsState}: AppState) => ({products: productsState.products}),
+    (dispatch: AppStore['dispatch']) => ({
+        onAddToCart: (productId: string) => dispatch(addProductToCart(productId))
+    })
+)(ProductListView);
+
