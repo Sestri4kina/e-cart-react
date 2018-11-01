@@ -17,6 +17,10 @@
     text-align: center;
 }
 
+.btn:focus {
+    outline: 0;
+}
+
 .btn-primary {
     color: white;
     background-color: orange;

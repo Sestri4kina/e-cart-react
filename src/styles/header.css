@@ -1,14 +1,15 @@
 header ul {
-    list-style-type: none;
-    width: 100%;
+    list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: orange;
+    background-color: orange; 
+    justify-content: flex-end;
+    
 }
 
 header li {
-    float: right;
+    align-items: flex-end;
 }
 
 header li a {
@@ -23,4 +24,18 @@ header li a {
 
 header li a:hover {
     background-color: rgba(255, 166, 0, 0.884);
+}
+
+.cart-badge {
+    background-color: white;
+    color: orange;
+    text-align: center;
+    vertical-align: middle; 
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    margin: 0 4px;
 }

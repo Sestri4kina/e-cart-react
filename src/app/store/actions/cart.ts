@@ -1,12 +1,15 @@
 import { AppAction, AppCommand } from '../types';
-import { addProductToCart as addProductToCartAPI} from '../../utils/remote-api';
+import { addProductToCart as addProductToCartAPI, getCartItems as getCartItemsAPI} from '../../utils/remote-api';
 import { CartItem } from '../models/cart';
 
 
 export const enum cartActionTypes {
     AddProductToCartStart = 'AddProductToCartStart',
     AddProductToCartSuccess = 'AddProductToCartSuccess',
-    AddProductToCartError = 'AddProductToCartError'
+    AddProductToCartError = 'AddProductToCartError',
+    GetCartItemsStart = 'GetCartItemsStart',
+    GetCartItemsSuccess = 'GetCartItemsSuccess',
+    GetCartItemsError = 'GetCartItemsError'
 }
 
 // ADD PRODUCT TO CART
@@ -53,3 +56,45 @@ export const addProductToCart = (productId: string): AppCommand =>
             return dispatch(addProductToCartError(error));
         }
     }
+
+//  GET CART ITEMS
+export type GetCartItemsStart = AppAction<cartActionTypes.GetCartItemsStart>;
+export function getCartItemsStart() : GetCartItemsStart {
+    return {
+        type: cartActionTypes.GetCartItemsStart
+    }
+}
+
+export type GetCartItemsSuccess = AppAction<
+    cartActionTypes.GetCartItemsSuccess,
+    CartItem[]
+>;
+export function getCartItemsSuccess(cartItems: CartItem[]): GetCartItemsSuccess {
+    return {
+        type: cartActionTypes.GetCartItemsSuccess,
+        payload: cartItems
+    }
+}
+
+export type GetCartItemsError = AppAction<
+    cartActionTypes.GetCartItemsError,
+    Error
+>;
+export function getCartItemsError(error: Error): GetCartItemsError {
+    return {
+        type: cartActionTypes.GetCartItemsError,
+        error
+    }
+}
+
+export const getCartItems = (): AppCommand => 
+    async (dispatch, getState, {api}) => {
+        dispatch(getCartItemsStart());
+        try {
+            const cartItems = await getCartItemsAPI();
+            return dispatch(getCartItemsSuccess(cartItems));
+        } catch(error) {
+            return dispatch(getCartItemsError(error));
+        }
+    }
+

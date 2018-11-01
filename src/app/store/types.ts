@@ -12,6 +12,7 @@ export interface ProductsState {
 
 export interface CartState {
     cartItems: CartItem[];
+    totalItems: number;
 }
 
 export const INITIAL_PRODUCTS_STATE: ProductsState = {
@@ -20,7 +21,8 @@ export const INITIAL_PRODUCTS_STATE: ProductsState = {
 };
 
 export const INITIAL_CART_STATE: CartState = {
-    cartItems: []
+    cartItems: [],
+    totalItems: 0
 }
 
 export interface AppState {

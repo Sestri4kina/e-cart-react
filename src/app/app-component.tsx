@@ -6,11 +6,12 @@ import {
     accessTokenIsExpired } 
     from './utils/services/handle-token';
 import {getAccessToken} from './utils/remote-api/auth-api';
+
 import {Route, Router, Switch} from 'react-router-dom';
 import {ProductList} from './containers';
-import { AppStore, fetchProducts } from "./store";
+import { AppStore, fetchProducts, getCartItems } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
-import {Header} from "./components";
+import {Header} from "./containers";
 export interface AppComponentProps {
     store: AppStore;
     history: History;
@@ -38,6 +39,9 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         this.setState({
             hasAccessToken: true
         });
+
+        const {store} = this.props;
+        store.dispatch(getCartItems());
     }
 
     componentDidMount() {
@@ -53,7 +57,7 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
     render() {
         const {hasAccessToken} = this.state;
         const {store, history} = this.props;
-
+      
         return hasAccessToken && (
             <ReduxProvider store={store}>
                 <Router history={history}>
