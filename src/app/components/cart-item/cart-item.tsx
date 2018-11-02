@@ -34,7 +34,8 @@ export const CartItemComponent = ({cartItem, onUpdateItem}: CartItemProps) => {
             <div className="grid-item-cart t-center">
                 <div className="control-buttons">
                     <button type="button" 
-                        className="btn btn-primary-inverse d-inline-block"
+                        className={"btn btn-primary-inverse d-inline-block " + (quantity === 1 && "disabled")}
+                        disabled={quantity === 1}
                         onClick={() => onUpdateItem(id, quantity - 1)}>-</button>
                     <h2 className="d-inline-block marg-h-sm">{quantity}</h2>
                     <button type="button" 

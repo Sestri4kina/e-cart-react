@@ -21,6 +21,11 @@
     outline: 0;
 }
 
+.btn:disabled {
+    color: grey;
+    background-color: #ededed;
+}
+
 .btn-primary {
     color: white;
     background-color: orange;
