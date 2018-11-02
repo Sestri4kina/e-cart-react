@@ -37,6 +37,24 @@ export async function postRequest(specificPath: string, body: any): Promise<any>
     }
 }
 
+export async function putRequest(specificPath: string, body: any): Promise<any> {
+    try {
+        const path = moltinBaseAPI + specificPath;
+        const headers = setHeaders();
+
+        const result = await axios.put(
+            path,
+            body,
+            { headers }
+        );
+
+        return result;
+    }  catch(err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}
+
 function setHeaders() {
     const token = accessToken();
     const headers: any = {};

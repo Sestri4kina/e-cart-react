@@ -1,6 +1,6 @@
 import { AuthAPI, getAccessToken } from './auth-api';
 import { ProductsAPI, getProducts } from './products-api';
-import { CartAPI, addProductToCart, getCartItems } from './cart-api';
+import { CartAPI, addProductToCart, getCartItems, updateItem } from './cart-api';
 
 export * from './auth-api';
 export * from './products-api';
@@ -22,7 +22,8 @@ export const api = ():ExternalAPI => {
         },
         cartAPI: {
             addProductToCart,
-            getCartItems
+            getCartItems,
+            updateItem
         }
     }
 }

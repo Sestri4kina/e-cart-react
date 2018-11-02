@@ -23,7 +23,7 @@
     align-content: center;
     grid-gap: 4px;
     padding: 16px;
-    grid-template-columns: 20% 20% 40% 10% 10%;
+    grid-template-columns: 20% 25% 15% 25% 15%;
 }
 
 .grid-item-cart {

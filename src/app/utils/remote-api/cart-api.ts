@@ -1,4 +1,4 @@
-import { postRequest, getRequest } from './generic-api';
+import { postRequest, getRequest, putRequest } from './generic-api';
 import {cartRef, isCartRefValid, createCartRef} from '../services/cart-utils';
 import { CartItem } from '../../store/models/cart';
 import { moltinAPI } from '../config';
@@ -39,6 +39,28 @@ export async function getCartItems(): Promise<CartItem[]> {
     }
 }
 
+export async function updateItem(itemId: string, quantity: number): Promise<CartItem[]> {
+    const cartRef = getCartRef();
+    const item = {
+        id: itemId,
+        quantity,
+        type: "cart_item"
+    }
+    try {
+        const cartItems = await putRequest(
+            moltinAPI.cartItemAPI(cartRef, itemId),
+            {data: item}
+        ).then(res => {
+            return res.data.data;
+        });
+
+        return cartItems
+    } catch(err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}
+
 export async function getCart(): Promise<any> {
     const cartRef = getCartRef();
     try {
@@ -67,4 +89,5 @@ function getCartRef() {
 export interface CartAPI {
     addProductToCart(productId: string): Promise<CartItem[]>;
     getCartItems(): Promise<CartItem[]>;
+    updateItem(itemId: string, quantity: number): Promise<CartItem[]>;
 }

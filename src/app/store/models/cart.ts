@@ -41,7 +41,35 @@ export interface CartItem {
     links: {
         product: string;
     };
-    meta: Meta;
+    meta: {
+        display_price: {
+            with_tax: {
+                unit: {
+                    amount: number;
+                    currency: string;
+                    formatted: string;
+                };
+                value: {
+                    amount: number;
+                    currency: string;
+                    formatted: string;
+                };
+            };
+            without_tax: {
+                unit: {
+                    amount: number;
+                    currency: string;
+                    formatted: string;
+                };
+                value: {
+                    amount: number;
+                    currency: string;
+                    formatted: string;
+                };
+            }
+        };
+        timestamps: Timestamps
+    };
 }
 
 export interface Meta {

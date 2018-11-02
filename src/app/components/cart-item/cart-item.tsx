@@ -3,12 +3,14 @@ import { CartItem } from '../../store';
 import '../../../styles/image.css';
 import '../../../styles/containers.css';
 import '../../../styles/index.css';
+import '../../../styles/button.css';
 
 interface CartItemProps {
     cartItem: CartItem;
+    onUpdateItem: (itemId: string, quantity: number) => void
 }
-export const CartItemComponent = ({cartItem}: CartItemProps) => {
-    const {name, image, description} = cartItem;
+export const CartItemComponent = ({cartItem, onUpdateItem}: CartItemProps) => {
+    const {name, image, description, quantity, id} = cartItem;
     return (
         <div className="grid-container-cart-item grey-container marg-h-sm">
             <div className="grid-item-cart">
@@ -23,18 +25,36 @@ export const CartItemComponent = ({cartItem}: CartItemProps) => {
                 </button>
             </div>
 
+            
+
             <div className="grid-item-cart">
-                controls buttons
+                <h3 className="price text-grey">{price(cartItem)}</h3>
+            </div>
+
+            <div className="grid-item-cart t-center">
+                <div className="control-buttons">
+                    <button type="button" 
+                        className="btn btn-primary-inverse d-inline-block"
+                        onClick={() => onUpdateItem(id, quantity - 1)}>-</button>
+                    <h2 className="d-inline-block marg-h-sm">{quantity}</h2>
+                    <button type="button" 
+                        className="btn btn-primary-inverse d-inline-block"
+                        onClick={() => onUpdateItem(id, quantity + 1)}>+</button>
+                </div>
             </div>
 
             <div className="grid-item-cart">
-                price
-            </div>
-
-            <div className="grid-item-cart">
-                amount
+                <h3 className="price">{amount(cartItem)}</h3>
             </div>
             
         </div>
     )
 }
+
+const price = (cartItem: CartItem) => {
+    return cartItem.meta.display_price.with_tax.unit.formatted;
+}
+
+ const amount = (cartItem: CartItem) => {
+    return cartItem.meta.display_price.with_tax.value.formatted;
+ }

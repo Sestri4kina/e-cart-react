@@ -10,7 +10,11 @@ class ProductListView extends React.Component<ProductListProps, {}> {
     render() {
         const {products, onAddToCart} = this.props; 
         const productList = products.map((product: Product) => {
-            return (<ProductItem key={product.id} product={product} onAddToCart={onAddToCart}/>)
+            return (<ProductItem 
+                key={product.id} 
+                product={product} 
+                onAddToCart={onAddToCart}
+                />)
         });
         
         return !!products.length && (
@@ -23,7 +27,7 @@ class ProductListView extends React.Component<ProductListProps, {}> {
 
 interface ProductListProps {
     products: Product[];
-    onAddToCart: (productIs: string) => void;
+    onAddToCart: (productId: string) => void;
 }
 
 // connect<IMapStateToProps, IMapDispatchToProps, ICompProps, IReduxState>

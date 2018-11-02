@@ -5,14 +5,16 @@ import {AppState, AppStore} from '../../store';
 import {CartItemComponent} from '../../components';
 import '../../../styles/grid.css';
 import '../../../styles/index.css';
+import { updateItem } from '../../store/actions/cart';
 
 interface CartViewProps {
     cartItems: CartItem[];
+    onUpdateItem: (itemId: string, quantity: number) => void
 }
 
 class CartView extends React.Component<CartViewProps, {}> {
     render() {
-        const {cartItems} = this.props;
+        const {cartItems, onUpdateItem} = this.props;
         return (
             <>
                 <h1 className="marg-left-lg marg-top-md">Cart</h1>
@@ -21,7 +23,8 @@ class CartView extends React.Component<CartViewProps, {}> {
                         cartItems.map(_cartItem => {
                             return <CartItemComponent 
                                 key={_cartItem.id} 
-                                cartItem={_cartItem}/>
+                                cartItem={_cartItem}
+                                onUpdateItem={onUpdateItem}/>
                         })
                     }
                 </div>
@@ -35,11 +38,14 @@ class CartView extends React.Component<CartViewProps, {}> {
 
 export const Cart = connect<
     Pick<CartViewProps, 'cartItems'>, 
-    {}, 
+    Pick<CartViewProps, 'onUpdateItem'>, 
     {}, 
     AppState
 >(
-({cartState}: AppState) => ({cartItems: cartState.cartItems})
+    ({cartState}: AppState) => ({cartItems: cartState.cartItems}),
+    (dispatch: AppStore['dispatch']) => ({
+        onUpdateItem: (itemId: string, quantity: number) => dispatch(updateItem(itemId, quantity))
+    })
 )(CartView);
 
 

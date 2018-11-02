@@ -1,5 +1,9 @@
 import { AppAction, AppCommand } from '../types';
-import { addProductToCart as addProductToCartAPI, getCartItems as getCartItemsAPI} from '../../utils/remote-api';
+import { 
+    addProductToCart as addProductToCartAPI, 
+    getCartItems as getCartItemsAPI,
+    updateItem as updateItemAPI
+} from '../../utils/remote-api';
 import { CartItem } from '../models/cart';
 
 
@@ -9,7 +13,10 @@ export const enum cartActionTypes {
     AddProductToCartError = 'AddProductToCartError',
     GetCartItemsStart = 'GetCartItemsStart',
     GetCartItemsSuccess = 'GetCartItemsSuccess',
-    GetCartItemsError = 'GetCartItemsError'
+    GetCartItemsError = 'GetCartItemsError',
+    UpdateItemStart = 'UpdateItemStart',
+    UpdateItemSuccess = 'UpdateItemSuccess',
+    UpdateItemError = 'UpdateItemError'
 }
 
 // ADD PRODUCT TO CART
@@ -97,4 +104,51 @@ export const getCartItems = (): AppCommand =>
             return dispatch(getCartItemsError(error));
         }
     }
+
+// UPDATE ITEM
+export type UpdateItemStart = AppAction<
+    cartActionTypes.UpdateItemStart,
+    {itemId: string; quantity: number;}
+>;
+export function updateItemStart(itemId: string, quantity: number): UpdateItemStart {
+    return {
+        type: cartActionTypes.UpdateItemStart,
+        payload: { itemId, quantity }
+    }
+}
+
+export type UpdateItemSuccess = AppAction<
+    cartActionTypes.UpdateItemSuccess,
+    CartItem[]
+>;
+export function updateItemSuccess(cartItems: CartItem[]): UpdateItemSuccess {
+    return {
+        type: cartActionTypes.UpdateItemSuccess,
+        payload: cartItems
+    }
+}
+
+
+export type UpdateItemError = AppAction<
+    cartActionTypes.UpdateItemError,
+    Error
+>;
+export function updateItemError(error: Error): UpdateItemError {
+    return {
+        type: cartActionTypes.UpdateItemError,
+        error
+    }
+}
+
+export const updateItem = (itemId: string, quantity: number): AppCommand =>
+    async (dispatch, getState, {api}) => {
+        dispatch(updateItemStart(itemId, quantity));
+        try {
+            const cartItems = await updateItemAPI(itemId, quantity);
+            return dispatch(updateItemSuccess(cartItems));
+        } catch(error) {
+            return dispatch(updateItemError(error));
+        }
+    }
+
 

@@ -10,7 +10,10 @@ import {
     AddProductToCartError,
     GetCartItemsStart,
     GetCartItemsSuccess,
-    GetCartItemsError
+    GetCartItemsError,
+    UpdateItemStart,
+    UpdateItemSuccess,
+    UpdateItemError
 } from './cart';
 
 export type Action = 
@@ -22,7 +25,10 @@ export type Action =
     | AddProductToCartError
     | GetCartItemsStart
     | GetCartItemsSuccess 
-    | GetCartItemsError;
+    | GetCartItemsError
+    | UpdateItemStart
+    | UpdateItemSuccess
+    | UpdateItemError;
   
 export * from './products';
 export * from './cart';

@@ -26,6 +26,15 @@ export const cartReducer = (
                 totalItems
             }
         }
+        case cartActionTypes.UpdateItemSuccess: {
+            const cartItems = action.payload;
+            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
+            return {
+                ...state,
+                cartItems,
+                totalItems
+            }
+        }
         default:
             return state;
     }

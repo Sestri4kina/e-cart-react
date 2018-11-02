@@ -75,3 +75,15 @@
     color: grey;
 }
 
+.d-inline-block {
+    display: inline-block;
+}
+
+.price {
+    text-align: center;
+    margin: 12px auto;
+}
+
+.t-center {
+    text-align: center;
+}
