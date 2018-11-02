@@ -44,6 +44,15 @@ export const cartReducer = (
                 totalItems
             }
         }
+        case cartActionTypes.RemoveCartSuccess: {
+            const cartItems: CartItem[] = [];
+            const totalItems = 0;
+            return {
+                ...state,
+                cartItems,
+                totalItems
+            }
+        }
         default:
             return state;
     }

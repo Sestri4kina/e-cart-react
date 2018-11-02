@@ -77,6 +77,22 @@ export async function removeItem(itemId: string): Promise<CartItem[]> {
     }
 }
 
+export async function removeCart(): Promise<any> {
+    const cartRef = getCartRef();
+    try {
+        const result = await deleteRequest(
+            moltinAPI.cartAPI(cartRef)
+        ).then(res => {
+            return res;
+        });
+
+        return result;
+    } catch(err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}
+
 export async function getCart(): Promise<any> {
     const cartRef = getCartRef();
     try {
@@ -107,4 +123,5 @@ export interface CartAPI {
     getCartItems(): Promise<CartItem[]>;
     updateItem(itemId: string, quantity: number): Promise<CartItem[]>;
     removeItem(itemId: string): Promise<CartItem[]>;
+    removeCart(): Promise<any>;
 }

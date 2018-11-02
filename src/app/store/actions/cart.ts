@@ -3,7 +3,8 @@ import {
     addProductToCart as addProductToCartAPI, 
     getCartItems as getCartItemsAPI,
     updateItem as updateItemAPI,
-    removeItem as removeItemAPI
+    removeItem as removeItemAPI,
+    removeCart as removeCartAPI
 } from '../../utils/remote-api';
 import { CartItem } from '../models/cart';
 
@@ -20,7 +21,10 @@ export const enum cartActionTypes {
     UpdateItemError = 'UpdateItemError',
     RemoveItemStart = 'RemoveItemStart',
     RemoveItemSuccess = 'RemoveItemSuccess',
-    RemoveItemError = 'RemoveItemError'
+    RemoveItemError = 'RemoveItemError',
+    RemoveCartStart = 'RemoveCartStart',
+    RemoveCartSuccess = 'RemoveCartSuccess',
+    RemoveCartError = 'RemoveCartError',
 }
 
 // ADD PRODUCT TO CART
@@ -197,5 +201,49 @@ export const removeItem = (itemId: string): AppCommand =>
             return dispatch(removeItemSuccess(cartItems));
         } catch(error) {
             return dispatch(removeItemError(error));
+        }
+    }
+
+//  REMOVE CART 
+//  REMOVE ITEM
+export type RemoveCartStart = AppAction<
+    cartActionTypes.RemoveCartStart
+>;
+export function removeCartStart(): RemoveCartStart {
+    return {
+        type: cartActionTypes.RemoveCartStart
+    }
+}
+
+export type RemoveCartSuccess = AppAction<
+    cartActionTypes.RemoveCartSuccess,
+    {type: string; id: string;}
+>;
+export function removeCartSuccess({type, id}: {type: string; id: string;}): RemoveCartSuccess {
+    return {
+        type: cartActionTypes.RemoveCartSuccess,
+        payload: {type, id}
+    }
+}
+
+export type RemoveCartError = AppAction<
+    cartActionTypes.RemoveCartError,
+    Error
+>;
+export function removeCartError(error: Error): RemoveCartError {
+    return {
+        type: cartActionTypes.RemoveCartError,
+        error
+    }
+}
+
+export const removeCart = (): AppCommand =>
+    async (dispatch, getState, {api}) => {
+        dispatch(removeCartStart());
+        try {
+            const result = await removeCartAPI();
+            return dispatch(removeCartSuccess(result));
+        } catch(error) {
+            return dispatch(removeCartError(error));
         }
     }

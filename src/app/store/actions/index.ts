@@ -16,7 +16,10 @@ import {
     UpdateItemError,
     RemoveItemStart,
     RemoveItemSuccess,
-    RemoveItemError
+    RemoveItemError,
+    RemoveCartStart,
+    RemoveCartSuccess,
+    RemoveCartError,
 } from './cart';
 
 export type Action = 
@@ -34,7 +37,10 @@ export type Action =
     | UpdateItemError
     | RemoveItemStart
     | RemoveItemSuccess
-    | RemoveItemError;
+    | RemoveItemError
+    | RemoveCartStart
+    | RemoveCartSuccess
+    | RemoveCartError;
   
 export * from './products';
 export * from './cart';

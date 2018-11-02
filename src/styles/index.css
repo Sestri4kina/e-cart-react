@@ -5,74 +5,89 @@
     font-family: monospace;
 }
 
+:root {
+    --white-color: #FFF;
+    --primary-color: #FFA500;
+    --black-color: #353839;
+    --primary-color-hover: #FF8C00;
+    --primary-color-inverse-hover: rgba(255, 165, 0, .5);
+    --grey-color: #545454;
+    --grey-color-light: #F5F5F5;
+    --grey-color-disabled: #EDEDED;
+    --dist-xs: 4px;
+    --dist-sm: 8px;
+    --dist-md: 16px;
+    --dist-lg: 24px;
+}
+
 .marg-bottom-sm {
-    margin-bottom: 8px;
+    margin-bottom: var(--dist-sm);
 }
 
 .marg-bottom-md {
-    margin-bottom: 16px;
+    margin-bottom: var(--dist-md);
 }
 
 .marg-bottom-lg {
-    margin-bottom: 24px;
+    margin-bottom: var(--dist-lg);
 }
 
 .marg-top-sm {
-    margin-top: 8px;
+    margin-top: var(--dist-sm);
 }
 
 .marg-top-md {
-    margin-top: 16px;
+    margin-top: var(--dist-md);
 }
 
 .marg-top-lg {
-    margin-top: 24px;
+    margin-top: var(--dist-lg);
 }
 
 .marg-left-sm {
-    margin-left: 8px;
+    margin-left: var(--dist-sm);
 }
 
 .marg-left-md {
-    margin-left: 16px;
+    margin-left: var(--dist-md);
 }
 
 .marg-left-lg {
-    margin-left: 24px;
+    margin-left: var(--dist-lg);
 }
 
 .marg-v-sm {
-    margin-bottom: 8px;
-    margin-top: 8px;
+    margin-bottom: var(--dist-sm);
+    margin-top: var(--dist-sm);
 }
 
 .marg-v-md {
-    margin-bottom: 16px;
-    margin-top: 16px;
+    margin-bottom: var(--dist-md);
+    margin-top: var(--dist-md);
 }
 
 .marg-v-lg {
-    margin-bottom: 24px;
-    margin-top: 24px;
+    margin-bottom: var(--dist-lg);
+    margin-top: var(--dist-lg);
 }
 
 .marg-h-sm {
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: var(--dist-sm);
+    margin-right: var(--dist-sm);
 }
 
 .marg-h-md {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: var(--dist-md);
+    margin-right: var(--dist-md);
 }
 
 .marg-h-lg {
-    margin-left: 24px;
-    margin-right: 24px;
+    margin-left: var(--dist-lg);
+    margin-right: var(--dist-lg);
 }
 
 .text-grey {
-    color: grey;
+    color: var(--grey-color);
 }
 
 .d-inline-block {
@@ -86,4 +101,12 @@
 
 .t-center {
     text-align: center;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
 }

@@ -1,8 +1,8 @@
 .grid-container-columns {
     display: grid;
     align-content: center;
-    grid-gap: 16px;
-    padding: 16px;
+    grid-gap: var(--dist-md);
+    padding: var(--dist-md);
     grid-template-columns: auto auto auto;
 }
 
@@ -13,16 +13,16 @@
 .grid-container-rows {
     display: grid;
     align-content: center;
-    grid-gap: 16px;
-    padding: 16px;
+    grid-gap: var(--dist-md);
+    padding: var(--dist-md);
     grid-template-rows: auto;
 }
 
 .grid-container-cart-item {
     display: grid;
     align-content: center;
-    grid-gap: 4px;
-    padding: 16px;
+    grid-gap: var(--dist-xs);
+    padding: var(--dist-md);
     grid-template-columns: 20% 25% 15% 25% 15%;
 }
 

@@ -11,8 +11,8 @@
     transition: all 300ms ease-out;
     background-color: transparent;
     text-transform: none;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: var(--dist-md) var(--dist-lg);
+    font-size: var(--dist-md);
     font-weight: 700;
     text-align: center;
 }
@@ -22,30 +22,30 @@
 }
 
 .btn:disabled {
-    color: grey;
-    background-color: #ededed;
+    color: var(--grey-color);
+    background-color: var(--grey-color-disabled);
 }
 
 .btn-primary {
-    color: white;
-    background-color: orange;
+    color: var(--white-color);
+    background-color: var(--primary-color);
 }
 
 .btn-primary:hover {
-    background-color: #FF8C00;
+    background-color: var(--primary-color-hover);
 }
 
 .btn-primary-inverse {
-    color: orange;
+    color: var(--primary-color);
     background-color: transparent;
 }
 
 .btn-primary-inverse:hover {
-    color: orange;
-    background-color: rgba(255, 165, 0, .5);
+    color: var(--primary-color);
+    background-color: var(--primary-color-inverse-hover);
 }
 
 .control-buttons {
     display: inline;
-    margin: 12px 24px;
+    margin: var(--dist-sm) var(--dist-lg);
 }

@@ -5,17 +5,18 @@ import {AppState, AppStore} from '../../store';
 import {CartItemComponent} from '../../components';
 import '../../../styles/grid.css';
 import '../../../styles/index.css';
-import { updateItem, removeItem } from '../../store/actions/cart';
+import { updateItem, removeItem, removeCart } from '../../store/actions/cart';
 
 interface CartViewProps {
     cartItems: CartItem[];
     onUpdateItem: (itemId: string, quantity: number) => void;
     onRemoveItem: (itemId: string) => void;
+    onRemoveCart: () => void;
 }
 
 class CartView extends React.Component<CartViewProps, {}> {
     render() {
-        const {cartItems, onUpdateItem, onRemoveItem} = this.props;
+        const {cartItems, onUpdateItem, onRemoveItem, onRemoveCart} = this.props;
         return (
             <>
                 <h1 className="marg-left-lg marg-top-md">Cart</h1>
@@ -31,8 +32,13 @@ class CartView extends React.Component<CartViewProps, {}> {
                     }
                 </div>
                 
-                <button className="btn btn-primary-inverse marg-v-lg" type="button">Clear cart</button>
-                <button className="btn btn-primary marg-v-lg" type="button">Buy</button>
+                <div className="marg-v-lg marg-h-lg">
+                    <button type="button" 
+                        className="btn btn-primary-inverse" 
+                        onClick={() => onRemoveCart()}>Clear cart</button>
+                    <button type="button"
+                        className="btn btn-primary float-right">Buy</button>
+                </div>
             </>
         )
     }
@@ -40,14 +46,15 @@ class CartView extends React.Component<CartViewProps, {}> {
 
 export const Cart = connect<
     Pick<CartViewProps, 'cartItems'>, 
-    Pick<CartViewProps, 'onUpdateItem' | 'onRemoveItem'>, 
+    Pick<CartViewProps, 'onUpdateItem' | 'onRemoveItem' | 'onRemoveCart'>, 
     {}, 
     AppState
 >(
     ({cartState}: AppState) => ({cartItems: cartState.cartItems}),
     (dispatch: AppStore['dispatch']) => ({
         onUpdateItem: (itemId: string, quantity: number) => dispatch(updateItem(itemId, quantity)),
-        onRemoveItem: (itemId: string) => dispatch(removeItem(itemId))
+        onRemoveItem: (itemId: string) => dispatch(removeItem(itemId)),
+        onRemoveCart: () => dispatch(removeCart())
     })
 )(CartView);
 

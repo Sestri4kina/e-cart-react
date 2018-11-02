@@ -1,9 +1,9 @@
 .product-name {
-    color: 	#353839;
+    color: var(--black-color);
     font-weight: 700;
 }
 
 .product-price {
-    color: #353839;
+    color: var(--black-color);
     font-weight: 400;
 }

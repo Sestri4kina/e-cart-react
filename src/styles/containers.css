@@ -1,6 +1,6 @@
 .grey-container {
-    padding: 24px;
-    background-color: #F5F5F5; 
+    padding: var(--dist-lg);
+    background-color: var(--grey-color-light); 
 }
 
 .img-container {
