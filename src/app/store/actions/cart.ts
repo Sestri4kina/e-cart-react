@@ -2,7 +2,8 @@ import { AppAction, AppCommand } from '../types';
 import { 
     addProductToCart as addProductToCartAPI, 
     getCartItems as getCartItemsAPI,
-    updateItem as updateItemAPI
+    updateItem as updateItemAPI,
+    removeItem as removeItemAPI
 } from '../../utils/remote-api';
 import { CartItem } from '../models/cart';
 
@@ -16,7 +17,10 @@ export const enum cartActionTypes {
     GetCartItemsError = 'GetCartItemsError',
     UpdateItemStart = 'UpdateItemStart',
     UpdateItemSuccess = 'UpdateItemSuccess',
-    UpdateItemError = 'UpdateItemError'
+    UpdateItemError = 'UpdateItemError',
+    RemoveItemStart = 'RemoveItemStart',
+    RemoveItemSuccess = 'RemoveItemSuccess',
+    RemoveItemError = 'RemoveItemError'
 }
 
 // ADD PRODUCT TO CART
@@ -151,4 +155,47 @@ export const updateItem = (itemId: string, quantity: number): AppCommand =>
         }
     }
 
+//  REMOVE ITEM
+export type RemoveItemStart = AppAction<
+    cartActionTypes.RemoveItemStart,
+    string
+>;
+export function removeItemStart(itemId: string): RemoveItemStart {
+    return {
+        type: cartActionTypes.RemoveItemStart,
+        payload: itemId
+    }
+}
 
+export type RemoveItemSuccess = AppAction<
+    cartActionTypes.RemoveItemSuccess,
+    CartItem[]
+>;
+export function removeItemSuccess(cartItems: CartItem[]): RemoveItemSuccess {
+    return {
+        type: cartActionTypes.RemoveItemSuccess,
+        payload: cartItems
+    }
+}
+
+export type RemoveItemError = AppAction<
+    cartActionTypes.RemoveItemError,
+    Error
+>;
+export function removeItemError(error: Error): RemoveItemError {
+    return {
+        type: cartActionTypes.RemoveItemError,
+        error
+    }
+}
+
+export const removeItem = (itemId: string): AppCommand =>
+    async (dispatch, getState, {api}) => {
+        dispatch(removeItemStart(itemId));
+        try {
+            const cartItems = await removeItemAPI(itemId);
+            return dispatch(removeItemSuccess(cartItems));
+        } catch(error) {
+            return dispatch(removeItemError(error));
+        }
+    }

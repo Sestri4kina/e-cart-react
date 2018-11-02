@@ -5,16 +5,17 @@ import {AppState, AppStore} from '../../store';
 import {CartItemComponent} from '../../components';
 import '../../../styles/grid.css';
 import '../../../styles/index.css';
-import { updateItem } from '../../store/actions/cart';
+import { updateItem, removeItem } from '../../store/actions/cart';
 
 interface CartViewProps {
     cartItems: CartItem[];
-    onUpdateItem: (itemId: string, quantity: number) => void
+    onUpdateItem: (itemId: string, quantity: number) => void;
+    onRemoveItem: (itemId: string) => void;
 }
 
 class CartView extends React.Component<CartViewProps, {}> {
     render() {
-        const {cartItems, onUpdateItem} = this.props;
+        const {cartItems, onUpdateItem, onRemoveItem} = this.props;
         return (
             <>
                 <h1 className="marg-left-lg marg-top-md">Cart</h1>
@@ -24,7 +25,8 @@ class CartView extends React.Component<CartViewProps, {}> {
                             return <CartItemComponent 
                                 key={_cartItem.id} 
                                 cartItem={_cartItem}
-                                onUpdateItem={onUpdateItem}/>
+                                onUpdateItem={onUpdateItem}
+                                onRemoveItem={onRemoveItem}/>
                         })
                     }
                 </div>
@@ -38,13 +40,14 @@ class CartView extends React.Component<CartViewProps, {}> {
 
 export const Cart = connect<
     Pick<CartViewProps, 'cartItems'>, 
-    Pick<CartViewProps, 'onUpdateItem'>, 
+    Pick<CartViewProps, 'onUpdateItem' | 'onRemoveItem'>, 
     {}, 
     AppState
 >(
     ({cartState}: AppState) => ({cartItems: cartState.cartItems}),
     (dispatch: AppStore['dispatch']) => ({
-        onUpdateItem: (itemId: string, quantity: number) => dispatch(updateItem(itemId, quantity))
+        onUpdateItem: (itemId: string, quantity: number) => dispatch(updateItem(itemId, quantity)),
+        onRemoveItem: (itemId: string) => dispatch(removeItem(itemId))
     })
 )(CartView);
 

@@ -55,6 +55,23 @@ export async function putRequest(specificPath: string, body: any): Promise<any> 
     }
 }
 
+export async function deleteRequest(specificPath: string): Promise<any> {
+    try {
+        const path = moltinBaseAPI + specificPath;
+        const headers = setHeaders();
+
+        const result = await axios.delete(
+            path,
+            { headers }
+        );
+
+        return result;
+    }  catch(err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}
+
 function setHeaders() {
     const token = accessToken();
     const headers: any = {};

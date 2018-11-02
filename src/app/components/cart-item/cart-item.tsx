@@ -7,9 +7,10 @@ import '../../../styles/button.css';
 
 interface CartItemProps {
     cartItem: CartItem;
-    onUpdateItem: (itemId: string, quantity: number) => void
+    onUpdateItem: (itemId: string, quantity: number) => void;
+    onRemoveItem: (itemId: string) => void;
 }
-export const CartItemComponent = ({cartItem, onUpdateItem}: CartItemProps) => {
+export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartItemProps) => {
     const {name, image, description, quantity, id} = cartItem;
     return (
         <div className="grid-container-cart-item grey-container marg-h-sm">
@@ -20,7 +21,9 @@ export const CartItemComponent = ({cartItem, onUpdateItem}: CartItemProps) => {
             <div className="grid-item-cart">
                 <h3>{name}</h3>
                 <h5 className="text-grey marg-top-md">{description.slice(0,  100)}...</h5>
-                <button className="btn btn-primary-inverse marg-top-md" type="button">
+                <button type="button" 
+                    className="btn btn-primary-inverse marg-top-md" 
+                    onClick={() => onRemoveItem(id)}>
                     Remove from cart
                 </button>
             </div>
