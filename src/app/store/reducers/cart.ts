@@ -8,49 +8,30 @@ export const cartReducer = (
     action: Action
 ): CartState => {
     switch(action.type) {
-        case cartActionTypes.AddProductToCartSuccess: {
-            const cartItems = action.payload;
-            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
-            return {
-                ...state,
-                cartItems,
-                totalItems
-            }
-        }
-        case cartActionTypes.GetCartItemsSuccess: {
-            const cartItems = action.payload;
-            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
-            return {
-                ...state,
-                cartItems,
-                totalItems
-            }
-        }
-        case cartActionTypes.UpdateItemSuccess: {
-            const cartItems = action.payload;
-            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
-            return {
-                ...state,
-                cartItems,
-                totalItems
-            }
-        }
+        case cartActionTypes.AddProductToCartSuccess: 
+        case cartActionTypes.GetCartItemsSuccess:
+        case cartActionTypes.UpdateItemSuccess:
         case cartActionTypes.RemoveItemSuccess: {
             const cartItems = action.payload;
-            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
+            const totalItems = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0);
+            const _total = cartItems.reduce((sum: number, item: CartItem) => sum + item.value.amount, 0);
+            const total = `$${_total * 0.01}.00`
             return {
                 ...state,
                 cartItems,
-                totalItems
+                totalItems,
+                total
             }
         }
         case cartActionTypes.RemoveCartSuccess: {
             const cartItems: CartItem[] = [];
             const totalItems = 0;
+            const total = '$0.00';
             return {
                 ...state,
                 cartItems,
-                totalItems
+                totalItems,
+                total
             }
         }
         default:

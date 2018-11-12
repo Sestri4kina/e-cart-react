@@ -49,3 +49,7 @@
     display: inline;
     margin: var(--dist-sm) var(--dist-lg);
 }
+
+.btn-lg {
+    width: 234px;
+}
