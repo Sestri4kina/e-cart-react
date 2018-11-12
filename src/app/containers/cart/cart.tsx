@@ -45,28 +45,6 @@ class CartView extends React.Component<CartViewProps, {}> {
                             </div>
                         </div>
                     </>)}
-                {/* <div className="grid-container-rows">
-                    {
-                        cartItems.map(_cartItem => {
-                            return <CartItemComponent 
-                                key={_cartItem.id} 
-                                cartItem={_cartItem}
-                                onUpdateItem={onUpdateItem}
-                                onRemoveItem={onRemoveItem}/>
-                        })
-                    }
-                </div>
-                
-                <div className="marg-v-lg marg-h-lg">
-                    <button type="button" 
-                        className="btn btn-primary-inverse" 
-                        onClick={() => onRemoveCart()}>Clear cart</button>
-                    <div className="float-right">
-                        <h1>Total: {total}</h1>
-                        <button type="button"
-                        className="btn btn-primary">Buy</button>
-                    </div>
-                </div> */}
             </>
         )
     }
