@@ -1,17 +1,21 @@
 import * as React from 'react';
-import { CartItem } from '../../store';
+import { CartItemWithStock } from '../../store';
 import '../../../styles/image.css';
 import '../../../styles/containers.css';
 import '../../../styles/index.css';
 import '../../../styles/button.css';
 
 interface CartItemProps {
-    cartItem: CartItem;
+    cartItem: CartItemWithStock;
     onUpdateItem: (itemId: string, quantity: number) => void;
     onRemoveItem: (itemId: string) => void;
 }
 export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartItemProps) => {
-    const {name, image, description, quantity, id} = cartItem;
+    const {
+        name, image, description, 
+        quantity, id, numberInStock
+    } = cartItem;
+    console.log(cartItem);
     return (
         <div className="grid-container-cart-item grey-container marg-h-sm">
             <div className="grid-item-cart">
@@ -43,6 +47,7 @@ export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartIt
                     <h2 className="d-inline-block marg-h-sm">{quantity}</h2>
                     <button type="button" 
                         className="btn btn-primary-inverse d-inline-block"
+                        disabled={quantity >= numberInStock}
                         onClick={() => onUpdateItem(id, quantity + 1)}>+</button>
                 </div>
             </div>
@@ -55,10 +60,10 @@ export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartIt
     )
 }
 
-const price = (cartItem: CartItem) => {
+const price = (cartItem: CartItemWithStock) => {
     return cartItem.meta.display_price.with_tax.unit.formatted;
 }
 
- const amount = (cartItem: CartItem) => {
+ const amount = (cartItem: CartItemWithStock) => {
     return cartItem.meta.display_price.with_tax.value.formatted;
  }

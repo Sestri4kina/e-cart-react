@@ -23,7 +23,7 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         super(props);
 
         this.state = {
-            hasAccessToken: false
+            hasAccessToken: false,
         };
     }
 
@@ -38,18 +38,20 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
         this.setState({
             hasAccessToken: true
         });
-
-        const {store} = this.props;
-        store.dispatch(getCartItems());
     }
 
-    componentDidMount() {
-        this.getAccessToken();
+    prefetchData() {
+        const {store} = this.props;
+        store.dispatch(getCartItems());
+        store.dispatch(fetchProducts());
+    }
+
+    async componentDidMount() {
+        await this.getAccessToken();
+        this.prefetchData();
     }
 
     private renderHome = () => {
-        const {store} = this.props;
-        store.dispatch(fetchProducts());
         return <Home />;
     }
 
@@ -60,7 +62,7 @@ export class App extends React.Component<AppComponentProps, AppComponentState> {
     render() {
         const {hasAccessToken} = this.state;
         const {store, history} = this.props;
-      
+        
         return hasAccessToken && (
             <ReduxProvider store={store}>
                 <Router history={history}>

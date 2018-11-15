@@ -22,6 +22,10 @@ export interface CartItems {
     meta: Meta;
 }
 
+export interface CartItemWithStock extends CartItem {
+    numberInStock: number;
+}
+
 export interface CartItem {
     id: string;
     type: "cart_item";

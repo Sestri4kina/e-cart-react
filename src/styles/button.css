@@ -24,6 +24,12 @@
 .btn:disabled {
     color: var(--grey-color);
     background-color: var(--grey-color-disabled);
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    color: var(--grey-color);
+    background-color: var(--grey-color-disabled);
 }
 
 .btn-primary {

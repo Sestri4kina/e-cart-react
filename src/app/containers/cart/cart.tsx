@@ -1,14 +1,21 @@
 import * as React from 'react';
-import { CartItem } from '../../store/models/cart';
-import {connect} from 'react-redux';
-import {AppState, AppStore} from '../../store';
-import {CartItemComponent} from '../../components';
+import { CartItemWithStock } from '../../store/models';
+import { connect } from 'react-redux';
+import { AppState, AppStore } from '../../store';
+import { CartItemComponent } from '../../components';
 import '../../../styles/grid.css';
 import '../../../styles/index.css';
 import { updateItem, removeItem, removeCart } from '../../store/actions/cart';
+import { createStructuredSelector } from 'reselect';
+import { 
+    selectCartItemsWithStock,
+    selectLoadedStatus, 
+    selectCartTotal, 
+} from '../../store/selectors/selectors';
 
 interface CartViewProps {
-    cartItems: CartItem[];
+    cartItemsWithStock: CartItemWithStock[];
+    isLoaded: boolean;
     total: string;
     onUpdateItem: (itemId: string, quantity: number) => void;
     onRemoveItem: (itemId: string) => void;
@@ -17,18 +24,21 @@ interface CartViewProps {
 
 class CartView extends React.Component<CartViewProps, {}> {
     render() {
-        const {cartItems, total, onUpdateItem, onRemoveItem, onRemoveCart} = this.props;
+        const { 
+            cartItemsWithStock, isLoaded, total,
+            onUpdateItem, onRemoveItem, onRemoveCart} = this.props;
+
         return (
             <>
-                <h1 className="marg-left-lg marg-top-md">Cart</h1>
-                {cartItems.length && 
+                <h1 className="marg-left-lg marg-top-md">Cart {}</h1>
+                {isLoaded &&
                     (<>
                         <div className="grid-container-rows">
                             {
-                                cartItems.map(_cartItem => {
+                                cartItemsWithStock.map(item => {
                                     return <CartItemComponent 
-                                        key={_cartItem.id} 
-                                        cartItem={_cartItem}
+                                        key={item.id} 
+                                        cartItem={item}
                                         onUpdateItem={onUpdateItem}
                                         onRemoveItem={onRemoveItem}/>
                                 })
@@ -51,17 +61,23 @@ class CartView extends React.Component<CartViewProps, {}> {
 }
 
 export const Cart = connect<
-    Pick<CartViewProps, 'cartItems' | 'total'>, 
+    Pick<CartViewProps, 
+    'cartItemsWithStock'
+    | 'isLoaded'
+    | 'total' 
+    >, 
     Pick<CartViewProps, 'onUpdateItem' | 'onRemoveItem' | 'onRemoveCart'>, 
     {}, 
     AppState
 >(
-    ({cartState}: AppState) => ({cartItems: cartState.cartItems, total: cartState.total}),
+    createStructuredSelector({
+        cartItemsWithStock: selectCartItemsWithStock,
+        isLoaded: selectLoadedStatus,
+        total: selectCartTotal
+    }),
     (dispatch: AppStore['dispatch']) => ({
         onUpdateItem: (itemId: string, quantity: number) => dispatch(updateItem(itemId, quantity)),
         onRemoveItem: (itemId: string) => dispatch(removeItem(itemId)),
         onRemoveCart: () => dispatch(removeCart())
     })
 )(CartView);
-
-

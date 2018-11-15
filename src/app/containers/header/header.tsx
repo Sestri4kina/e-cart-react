@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 import {AppState} from '../../store';
 
 interface HeaderProps {
-    totalItems: number;
+    //totalItems: number;
+    totalItems: string;
 }
 
 export const HeaderView = ({totalItems}: HeaderProps) => {
@@ -17,10 +18,10 @@ export const HeaderView = ({totalItems}: HeaderProps) => {
                     <li>
                         <Link to='/cart'>
                             Cart
-                            {
+                            {/* {
                                 totalItems && 
                                 <span className="cart-badge">{totalItems}</span>
-                            }
+                            } */}
                         </Link>
                     </li>
                 </ul>
@@ -36,5 +37,5 @@ export const Header = connect<
     {},
     AppState
 >(
-    ({cartState}: AppState) => ({totalItems: cartState.totalItems})
+    ({cartState}: AppState) => ({totalItems: cartState.status})
 )(HeaderView)

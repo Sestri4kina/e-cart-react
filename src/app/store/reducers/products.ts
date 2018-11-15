@@ -1,5 +1,5 @@
 import {Action} from '../actions';
-import {ProductsState, INITIAL_PRODUCTS_STATE} from '../types';
+import {ProductsState, INITIAL_PRODUCTS_STATE, dataStatus} from '../types';
 import { productsActionTypes } from '../actions/products';
 import produce from 'immer';
 
@@ -11,11 +11,11 @@ export const productsReducer = (
         case productsActionTypes.FetchProductsSuccess: {
             const products = action.payload;
             draft.products = products;
-            draft.isLoading = false;
+            draft.status = dataStatus.isReady;
             break;
         } 
         case productsActionTypes.FetchProductsStart: {
-            draft.isLoading = true;
+            draft.status = dataStatus.isLoading;
             break;
         }
     }
