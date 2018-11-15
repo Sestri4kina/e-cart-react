@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import '../../../styles/header.css';
-import {connect} from 'react-redux';
-import {AppState} from '../../store';
+import { connect } from 'react-redux';
+import { AppState } from '../../store';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItemsTotal } from '../../store/selectors';
 
 interface HeaderProps {
-    //totalItems: number;
-    totalItems: string;
+    totalItems: number;
 }
 
 export const HeaderView = ({totalItems}: HeaderProps) => {
@@ -18,10 +19,10 @@ export const HeaderView = ({totalItems}: HeaderProps) => {
                     <li>
                         <Link to='/cart'>
                             Cart
-                            {/* {
+                            {
                                 totalItems && 
                                 <span className="cart-badge">{totalItems}</span>
-                            } */}
+                            }
                         </Link>
                     </li>
                 </ul>
@@ -37,5 +38,7 @@ export const Header = connect<
     {},
     AppState
 >(
-    ({cartState}: AppState) => ({totalItems: cartState.status})
+    createStructuredSelector({
+        totalItems: selectCartItemsTotal
+    })
 )(HeaderView)
