@@ -3,73 +3,53 @@ import axios from 'axios';
 import { accessToken } from '../services/handle-token';
 
 export async function getRequest(specificPath: string): Promise<any> {
-    try {
-        const path = moltinBaseAPI + specificPath;
-        const headers = setHeaders();
+    const path = moltinBaseAPI + specificPath;
+    const headers = setHeaders();
 
-        const result = await axios.get(
-            path,
-            { headers }
-        );
+    const result = await axios.get(
+        path,
+        { headers }
+    );
 
-        return result;
-    }  catch(err) {
-        console.log(err);
-        throw new Error(err);
-    }
+    return result;
 }
 
 export async function postRequest(specificPath: string, body: any): Promise<any> {
-    try {
-        const path = moltinBaseAPI + specificPath;
-        const headers = setHeaders();
+    const path = moltinBaseAPI + specificPath;
+    const headers = setHeaders();
 
-        const result = await axios.post(
-            path,
-            body,
-            { headers }
-        );
+    const result = await axios.post(
+        path,
+        body,
+        { headers }
+    );
 
-        return result;
-    }  catch(err) {
-        console.log(err);
-        throw new Error(err);
-    }
+    return result;
 }
 
 export async function putRequest(specificPath: string, body: any): Promise<any> {
-    try {
-        const path = moltinBaseAPI + specificPath;
-        const headers = setHeaders();
+    const path = moltinBaseAPI + specificPath;
+    const headers = setHeaders();
 
-        const result = await axios.put(
-            path,
-            body,
-            { headers }
-        );
+    const result = await axios.put(
+        path,
+        body,
+        { headers }
+    );
 
-        return result;
-    }  catch(err) {
-        console.log(err);
-        throw new Error(err);
-    }
+    return result;
 }
 
 export async function deleteRequest(specificPath: string): Promise<any> {
-    try {
-        const path = moltinBaseAPI + specificPath;
-        const headers = setHeaders();
+    const path = moltinBaseAPI + specificPath;
+    const headers = setHeaders();
 
-        const result = await axios.delete(
-            path,
-            { headers }
-        );
+    const result = await axios.delete(
+        path,
+        { headers }
+    );
 
-        return result;
-    }  catch(err) {
-        console.log(err);
-        throw new Error(err);
-    }
+    return result;
 }
 
 function setHeaders() {

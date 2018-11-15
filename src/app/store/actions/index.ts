@@ -22,6 +22,10 @@ import {
     RemoveCartError,
 } from './cart';
 
+import {
+    ClearErrorMessage
+} from './error';
+
 export type Action = 
     FetchProductsStart 
     | FetchProductsSuccess
@@ -40,7 +44,9 @@ export type Action =
     | RemoveItemError
     | RemoveCartStart
     | RemoveCartSuccess
-    | RemoveCartError;
+    | RemoveCartError
+    | ClearErrorMessage;
   
 export * from './products';
 export * from './cart';
+export * from './error';

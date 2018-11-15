@@ -23,6 +23,9 @@ export const selectCartTotal = createSelector(
     }
 );
 
+export const selectErrorMessage: AppSelector<string> =
+    ({errorState}: AppState) => errorState.error;
+
 export const selectCartItemsTotal = createSelector(
     selectCartItems, 
     cartItems => {

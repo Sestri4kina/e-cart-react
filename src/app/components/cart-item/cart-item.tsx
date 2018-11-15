@@ -15,7 +15,7 @@ export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartIt
         name, image, description, 
         quantity, id, numberInStock
     } = cartItem;
-    console.log(cartItem);
+    
     return (
         <div className="grid-container-cart-item grey-container marg-h-sm">
             <div className="grid-item-cart">

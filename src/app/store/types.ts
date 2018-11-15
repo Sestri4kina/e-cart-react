@@ -23,9 +23,13 @@ export interface CartState {
     status: DataStatus;
 }
 
+export interface ErrorState {
+    error: string;
+}
+
 export const INITIAL_PRODUCTS_STATE: ProductsState = {
     products: [],
-    status: dataStatus.isNew
+    status: dataStatus.isNew,
 };
 
 export const INITIAL_CART_STATE: CartState = {
@@ -33,9 +37,14 @@ export const INITIAL_CART_STATE: CartState = {
     status: dataStatus.isNew,
 }
 
+export const INITIAL_ERROR_STATE: ErrorState = {
+    error: '',
+}
+
 export interface AppState {
     productsState: ProductsState;
     cartState: CartState;
+    errorState: ErrorState;
 }
 
 export type AppAction<T extends string, P = null> = {type: T} & (
