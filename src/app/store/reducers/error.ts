@@ -1,9 +1,9 @@
 import { 
     ErrorState, 
     INITIAL_ERROR_STATE 
-} from "../types";
-import { Action } from '../actions';
-import { cartActionTypes, productsActionTypes, errorActionTypes } from "../actions";
+} from "@store/types";
+import { Action } from '@store/actions';
+import { cartActionTypes, productsActionTypes, errorActionTypes } from "@store/actions";
 import produce from 'immer';
 
 export const errorReducer = (

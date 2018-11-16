@@ -2,7 +2,7 @@ import {Product, CartItem} from './models';
 import {History} from 'history';
 import {ThunkAction} from 'redux-thunk';
 import {ParametricSelector, Selector} from 'reselect';
-import {ExternalAPI} from '../utils/remote-api';
+import {ExternalAPI} from '@utils/remote-api';
 import {Action} from './actions';
 
 export const enum dataStatus {

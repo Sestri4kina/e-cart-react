@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { CartItemWithStock } from '../../store';
-import '../../../styles/image.css';
-import '../../../styles/containers.css';
-import '../../../styles/index.css';
-import '../../../styles/button.css';
+import { CartItemWithStock } from '@store/index';
+import '@styles/image.css';
+import '@styles/containers.css';
+import '@styles/index.css';
+import '@styles/button.css';
 
 interface CartItemProps {
     cartItem: CartItemWithStock;

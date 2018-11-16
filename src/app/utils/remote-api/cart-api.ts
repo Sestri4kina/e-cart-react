@@ -1,7 +1,7 @@
 import { postRequest, getRequest, putRequest, deleteRequest } from './generic-api';
-import {cartRef, isCartRefValid, createCartRef} from '../services/cart-utils';
-import { CartItem } from '../../store/models/cart';
-import { moltinAPI } from '../config';
+import {cartRef, isCartRefValid, createCartRef} from '@utils/services/cart-utils';
+import { CartItem } from '@store/models/cart';
+import { moltinAPI } from '@utils/config';
 
 export async function addProductToCart(productId: string): Promise<CartItem[]> {
     const cartRef = getCartRef();

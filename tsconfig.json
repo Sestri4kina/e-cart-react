@@ -23,7 +23,15 @@
       "skipLibCheck": true,
       "strictPropertyInitialization": false,
       "inlineSources": true,
-      "experimentalDecorators": true
+      "experimentalDecorators": true,
+      "baseUrl": ".",
+      "paths": {
+        "@store/*": ["src/app/store/*"],
+        "@utils/*": ["src/app/utils/*"],
+        "@components/*": ["src/app/components/*"],
+        "@containers/*": ["src/app/containers/*"],
+        "@styles/*": ["src/styles/*"]
+      }
     },
     "include": [
       "./src/**/**/*"

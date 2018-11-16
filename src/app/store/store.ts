@@ -12,7 +12,7 @@ import {
     INITIAL_CART_STATE, 
     INITIAL_ERROR_STATE
 } from './types';
-import {api, ExternalAPI} from '../utils/remote-api';
+import {api, ExternalAPI} from '@utils/remote-api';
 
 export const defaultState: AppState = {
     productsState: INITIAL_PRODUCTS_STATE,

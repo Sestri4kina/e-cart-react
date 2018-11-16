@@ -1,6 +1,6 @@
-import { moltinBaseAPI } from '../config';
+import { moltinBaseAPI } from '@utils/config';
 import axios from 'axios';
-import { accessToken } from '../services/handle-token';
+import { accessToken } from '@utils/services/handle-token';
 
 export async function getRequest(specificPath: string): Promise<any> {
     const path = moltinBaseAPI + specificPath;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import '../../../styles/header.css';
+import '@styles/header.css';
 import { connect } from 'react-redux';
-import { AppState } from '../../store';
+import { AppState } from '@store/index';
 import { createStructuredSelector } from 'reselect';
-import { selectCartItemsTotal } from '../../store/selectors';
+import { selectCartItemsTotal } from '@store/selectors';
 
 interface HeaderProps {
     totalItems: number;

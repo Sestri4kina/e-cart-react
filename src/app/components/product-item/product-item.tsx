@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Product } from '../../store';
-import '../../../styles/grid.css';
-import '../../../styles/image.css';
-import '../../../styles/containers.css';
-import '../../../styles/product.css';
-import '../../../styles/button.css';
-import '../../../styles/index.css';
+import { Product } from '@store/models';
+import '@styles/grid.css';
+import '@styles/image.css';
+import '@styles/containers.css';
+import '@styles/product.css';
+import '@styles/button.css';
+import '@styles/index.css';
 interface ProductItemProps {
     product: Product;
     onAddToCart: (productId: string) => void

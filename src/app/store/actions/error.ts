@@ -1,4 +1,4 @@
-import { AppAction } from '../types';
+import { AppAction } from '@store/types';
 
 export const enum errorActionTypes {
     ClearErrorMessage = 'ClearErrorMessage',

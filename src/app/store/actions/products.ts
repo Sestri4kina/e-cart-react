@@ -1,6 +1,6 @@
-import { AppAction, AppCommand } from '../types';
-import { Product } from '../models';
-import {getProducts} from '../../utils/remote-api';
+import { AppAction, AppCommand } from '@store/types';
+import { Product } from '@store/models';
+import {getProducts} from '@utils/remote-api';
 
 
 export const enum productsActionTypes {

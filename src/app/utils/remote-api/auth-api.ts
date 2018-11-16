@@ -1,6 +1,6 @@
-import { clientId, moltinBaseAPI, moltinAPI } from '../config';
+import { clientId, moltinBaseAPI, moltinAPI } from '@utils/config';
 import axios from 'axios';
-import { AccessToken } from '../../store/models';
+import { AccessToken } from '@store/models';
 
 export async function getAccessToken(): Promise<AccessToken> {
 

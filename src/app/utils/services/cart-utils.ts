@@ -1,5 +1,5 @@
-import { CartReference } from "../../store/models/cart";
-import { timeCartIsValid } from "../config";
+import { CartReference } from "@store/models/cart";
+import { timeCartIsValid } from "@utils/config";
 
 export function generateCartRefValue(): string {
     return (Math.random() * Math.pow(10, 16)).toString(36);

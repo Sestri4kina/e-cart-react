@@ -1,4 +1,4 @@
-import { Timestamps, Price, DisplayPrice } from '../models';
+import { Timestamps, Price, DisplayPrice } from '@store/models';
 
 export interface ItemRequest {
     quantity: number;

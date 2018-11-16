@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {Product} from "../../store/models";
-import {connect} from 'react-redux';
-import {AppState, AppStore, clearErrorMessage} from '../../store';
-import {ProductItem} from '../../components';
-import '../../../styles/grid.css';
-import { addProductToCart } from '../../store/actions/cart';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectProducts, selectErrorMessage } from '../../store/selectors';
+import '@styles/grid.css';
+
+import {Product} from '@store/models';
+import {AppState, AppStore, clearErrorMessage} from '@store/index';
+import {ProductItem} from '@components/index';
+import { addProductToCart } from '@store/actions';
+import { selectProducts, selectErrorMessage } from '@store/selectors';
 
 class ProductListView extends React.Component<ProductListProps, {}> {
     render() {

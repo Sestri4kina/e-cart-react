@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { CartItemWithStock } from '../../store/models';
+import { CartItemWithStock } from '@store/models';
 import { connect } from 'react-redux';
-import { AppState, AppStore } from '../../store';
-import { CartItemComponent } from '../../components';
-import '../../../styles/grid.css';
-import '../../../styles/index.css';
-import { updateItem, removeItem, removeCart } from '../../store/actions/cart';
+import { AppState, AppStore } from '@store/index';
+import { CartItemComponent } from '@components/index';
+import '@styles/grid.css';
+import '@styles/index.css';
+import { updateItem, removeItem, removeCart } from '@store/actions';
 import { createStructuredSelector } from 'reselect';
 import { 
     selectCartItemsWithStock,
     selectLoadedStatus, 
     selectCartTotal, 
-} from '../../store/selectors/selectors';
+} from '@store/selectors/selectors';
 
 interface CartViewProps {
     cartItemsWithStock: CartItemWithStock[];

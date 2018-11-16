@@ -1,6 +1,6 @@
-import {Action} from '../actions';
-import {ProductsState, INITIAL_PRODUCTS_STATE, dataStatus} from '../types';
-import { productsActionTypes } from '../actions/products';
+import {Action} from '@store/actions';
+import {ProductsState, INITIAL_PRODUCTS_STATE, dataStatus} from '@store/types';
+import { productsActionTypes } from '@store/actions/products';
 import produce from 'immer';
 
 export const productsReducer = (

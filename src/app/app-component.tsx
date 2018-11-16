@@ -4,13 +4,13 @@ import {History} from 'history';
 import { 
     persistAccessToken, 
     accessTokenIsExpired } 
-    from './utils/services/handle-token';
-import {getAccessToken} from './utils/remote-api/auth-api';
+    from '@utils/services/handle-token';
+import {getAccessToken} from '@utils/remote-api/auth-api';
 
 import {Route, Router, Switch} from 'react-router-dom';
 import { AppStore, fetchProducts, getCartItems } from "./store";
 import {Provider as ReduxProvider} from 'react-redux';
-import {Header, Cart, Home} from "./containers";
+import {Header, Cart, Home} from "@containers/index";
 export interface AppComponentProps {
     store: AppStore;
     history: History;

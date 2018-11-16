@@ -1,4 +1,4 @@
-import { ProductWithoutImage, Product, ImageData } from "../../store/models";
+import { ProductWithoutImage, Product, ImageData } from "@store/models";
 
 export function composeProductArray(products: ProductWithoutImage[], images: ImageData[]): Product[] {
     let productsWithImages: Product[] = [];

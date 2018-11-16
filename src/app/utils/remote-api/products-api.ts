@@ -1,6 +1,6 @@
-import { moltinAPI } from '../config';
-import { Product } from '../../store/models';
-import {composeProductArray} from '../services/product-utils';
+import { moltinAPI } from '@utils/config';
+import { Product } from '@store/models';
+import {composeProductArray} from '@utils/services/product-utils';
 import { getRequest } from './generic-api';
 
 export async function getProducts(): Promise<Product[]> {

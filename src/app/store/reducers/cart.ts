@@ -1,6 +1,6 @@
-import { CartState, INITIAL_CART_STATE, dataStatus } from "../types";
-import { Action } from '../actions';
-import { cartActionTypes } from "../actions/cart";
+import { CartState, INITIAL_CART_STATE, dataStatus } from "@store/types";
+import { Action } from '@store/actions';
+import { cartActionTypes } from "@store/actions/cart";
 import produce from 'immer';
 
 export const cartReducer = (

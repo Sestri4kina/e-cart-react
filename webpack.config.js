@@ -13,7 +13,14 @@ module.exports = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+        alias: {
+            '@store': path.resolve(__dirname, 'src/app/store'),
+            '@utils': path.resolve(__dirname, 'src/app/utils'),
+            '@components': path.resolve(__dirname, 'src/app/components'),
+            '@containers': path.resolve(__dirname, 'src/app/containers'),
+            '@styles': path.resolve(__dirname, 'src/styles')
+        }
     },
     module: {
         rules: [

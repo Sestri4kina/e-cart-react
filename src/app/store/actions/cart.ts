@@ -1,12 +1,12 @@
-import { AppAction, AppCommand } from '../types';
+import { AppAction, AppCommand } from '@store/types';
 import { 
     addProductToCart as addProductToCartAPI, 
     getCartItems as getCartItemsAPI,
     updateItem as updateItemAPI,
     removeItem as removeItemAPI,
     removeCart as removeCartAPI
-} from '../../utils/remote-api';
-import { CartItem } from '../models/cart';
+} from '@utils/remote-api';
+import { CartItem } from '@store/models/cart';
 
 
 export const enum cartActionTypes {

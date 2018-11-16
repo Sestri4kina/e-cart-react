@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { AppState } from '../types';
+import { AppState } from '@store/types';
 
 import { productsReducer } from './products';
 import { cartReducer } from './cart';

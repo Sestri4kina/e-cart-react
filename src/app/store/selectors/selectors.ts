@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { AppSelector, AppState } from '../types';
-import { CartItem, Product, CartItemWithStock } from '../models';
+import { AppSelector, AppState } from '@store/types';
+import { CartItem, Product, CartItemWithStock } from '@store/models';
 
 export const selectCartItems: AppSelector<CartItem[]> = 
     ({cartState}: AppState) => cartState.cartItems;
