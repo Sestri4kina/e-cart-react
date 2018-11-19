@@ -26,11 +26,14 @@ class ProductListView extends React.Component<ProductListProps, {}> {
                 />)
         });
         
-        return !!products.length && (
-            <div className="grid-container-columns">
-                {productList}
-            </div>
-        )
+        return (
+            <>
+                <h1 data-testid="home-title" className="marg-left-lg marg-top-md">Home</h1>
+                {!!products.length && (
+                    <div className="grid-container-columns">
+                        {productList}
+                    </div>)}
+            </>)
     }
 }
 
