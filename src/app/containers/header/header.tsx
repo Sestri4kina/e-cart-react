@@ -13,15 +13,15 @@ interface HeaderProps {
 export const HeaderView = ({totalItems}: HeaderProps) => {
     return (
         <header>
-            <nav>
+            <nav data-testid="navbar">
                 <ul>
-                    <li><Link to='/'>Home</Link></li>
-                    <li>
+                    <li data-testid="nav-li"><Link to='/'>Home</Link></li>
+                    <li data-testid="nav-li">
                         <Link to='/cart'>
                             Cart
                             {
                                 totalItems && 
-                                <span className="cart-badge">{totalItems}</span>
+                                <span className="cart-badge" data-testid="cart-badge">{totalItems}</span>
                             }
                         </Link>
                     </li>

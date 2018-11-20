@@ -30,7 +30,7 @@ class CartView extends React.Component<CartViewProps, {}> {
 
         return (
             <>
-                <h1 className="marg-left-lg marg-top-md">Cart</h1>
+                <h1 className="marg-left-lg marg-top-md" data-testid="cart-title">Cart</h1>
                 {isLoaded &&
                     (<>
                         <div className="grid-container-rows">

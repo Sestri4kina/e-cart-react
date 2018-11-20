@@ -15,15 +15,16 @@ export const ProductItem = ({product, onAddToCart}: ProductItemProps) => {
     const {name, imageHref} = product;
     const price = product.meta.display_price.with_tax.formatted;
     return (
-        <div className="grid-item">
+        <div className="grid-item" data-testid="product-item">
             <div className="grey-container">
-                <div className="img-container">
-                    <img className="img" src={imageHref} />
+                <div className="img-container" data-testid="product-img">
+                    <img className="img" src={imageHref}/>
                 </div>
-                <h3 className="product-name">{name}</h3>
-                <h2 className="product-price">{price}</h2>
+                <h3 className="product-name" data-testid="product-name">{name}</h3>
+                <h2 className="product-price" data-testid="product-price">{price}</h2>
                 <button type="button" 
                     className="btn btn-primary marg-v-md"
+                    data-testid="product-btn"
                     onClick={() => onAddToCart(product.id)}>
                     Add to cart
                 </button>
