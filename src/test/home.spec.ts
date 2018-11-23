@@ -31,6 +31,16 @@ describe('load home page', () => {
         expect(navs).toEqual(2);
     }, 16000);
 
+    test('should redirect to Cart page upon click on cart nav link', async () => {
+        await page.waitForSelector('a[href="#/cart"]')
+        await page.click('a[href="#/cart"]')
+
+        await page.waitForSelector('[data-testid="cart-title"]');
+        const cartTitle = await page.$eval('[data-testid="cart-title"]', e => e.textContent);
+    
+        expect(cartTitle).toEqual('Cart');
+    }, 10000);
+
     test('should display 3 products', async () => {
         await page.waitForSelector('[data-testid="product-item"]');
         const products = await page.$$eval<number>('[data-testid="product-item"]', item => item.length);
@@ -50,16 +60,6 @@ describe('load home page', () => {
         expect(price).toEqual("$4,999.00");
         expect(buttonText).toEqual("Add to cart");
     }, 5000);
-
-    test('shoul redirect to Cart page upon click on cart nav link', async () => {
-        await page.waitForSelector('a[href="#/cart"]')
-        await page.click('a[href="#/cart"]')
-
-        await page.waitForSelector('[data-testid="cart-title"]');
-        const cartTitle = await page.$eval('[data-testid="cart-title"]', e => e.textContent);
-    
-        expect(cartTitle).toEqual('Cart');
-    }, 10000);
 });
 
 afterAll(async () => {

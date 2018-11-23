@@ -14,5 +14,12 @@ module.exports = {
       "json",
       "node"
     ],
+    "moduleNameMapper": {
+      "^@store/(.*)": "<rootDir>/src/app/store/$1",
+      "^@utils/(.*)": "<rootDir>/src/app/utils/$1",
+      "^@components/(.*)": "<rootDir>/src/app/components/$1",
+      "^@containers/(.*)": "<rootDir>/src/app/containers/$1",
+      "^@styles/(.*)": "<rootDir>/src/styles/$1"
+    }
   }
   

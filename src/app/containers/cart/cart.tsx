@@ -33,7 +33,7 @@ class CartView extends React.Component<CartViewProps, {}> {
                 <h1 className="marg-left-lg marg-top-md" data-testid="cart-title">Cart</h1>
                 {isLoaded &&
                     (<>
-                        <div className="grid-container-rows">
+                        <div className="grid-container-rows" data-testid="cart-items-container">
                             {
                                 cartItemsWithStock.map(item => {
                                     return <CartItemComponent 

@@ -62,7 +62,8 @@ export function cartRefObject(): CartReference {
     try {
         return JSON.parse(localStorage.getItem("cart_ref")!);
     } catch(err) {
-        console.log(err);
+        console.log(err.name);
+        console.log(err.stack);
         throw new Error(err);
     }
 }

@@ -1,4 +1,4 @@
-import { postRequest, getRequest, putRequest, deleteRequest } from './generic-api';
+import { postRequest, getRequest, putRequest, deleteRequest, handleError } from './generic-api';
 import {cartRef, isCartRefValid, createCartRef} from '@utils/services/cart-utils';
 import { CartItem } from '@store/models/cart';
 import { moltinAPI } from '@utils/config';
@@ -27,7 +27,9 @@ export async function getCartItems(): Promise<CartItem[]> {
     try {
         const cartItems = await getRequest(
             moltinAPI.cartItemsAPI(cartRef),
-        ).then(res => res.data.data);
+        ).then(res => {
+            return res.data.data;
+        });
 
         return cartItems;
     } catch(err) {
@@ -86,7 +88,6 @@ export async function getCart(): Promise<any> {
         const cart = await getRequest(
             moltinAPI.cartAPI(cartRef),
         ).then(res => {
-            console.log(res);
             return res.data.data;
         });
 
@@ -96,21 +97,12 @@ export async function getCart(): Promise<any> {
     }
 }
 
-function getCartRef() {
+export function getCartRef() {
     if (!isCartRefValid()) {
         createCartRef();
     }
 
-    return  cartRef();
-}
-
-const handleError = (err: Error): never => {
-    const errObject = JSON.parse(JSON.stringify(err));
-    const errMessage = errObject.response 
-        ? errObject.response.data.errors[0].detail 
-        : errObject;
-    console.log(errMessage);
-    throw new Error(errMessage);
+    return cartRef();
 }
 
 export interface CartAPI {

@@ -13,11 +13,12 @@ interface CartItemProps {
 export const CartItemComponent = ({cartItem, onUpdateItem, onRemoveItem}: CartItemProps) => {
     const {
         name, image, description, 
-        quantity, id, numberInStock
+        quantity, id, numberInStock, product_id
     } = cartItem;
     
     return (
-        <div className="grid-container-cart-item grey-container marg-h-sm">
+        <div className="grid-container-cart-item grey-container marg-h-sm"
+            data-testid="cart-item">
             <div className="grid-item-cart">
                 <img src={image.href} className="img img-sm" />
             </div>

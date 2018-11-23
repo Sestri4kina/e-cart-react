@@ -52,11 +52,24 @@ export async function deleteRequest(specificPath: string): Promise<any> {
     return result;
 }
 
-function setHeaders() {
+export function setHeaders() {
     const token = accessToken();
     const headers: any = {};
     headers['Authorization'] = `Bearer ${token}`;
     headers['Content-Type'] = 'application/json';
 
     return headers;
+}
+
+export const handleError = (err: Error): never => {
+    console.log(err.name);
+    console.log(err.message);
+    console.log(err.stack);
+    
+    const errObject = JSON.parse(JSON.stringify(err));
+    const errMessage = errObject.response 
+        ? errObject.response.data.errors[0].detail 
+        : errObject;
+    console.log(errMessage);
+    throw new Error(err.message);
 }
